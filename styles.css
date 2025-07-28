@@ -1,5 +1,116 @@
-﻿body {
-    background-color: #000000;
-    color: #333333;
-    font-family: Arial, sans-serif;
+﻿/* Reset some default styles */
+body, h1, h2, ul, li, p {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f7f9fa;
+    color: #222;
+    line-height: 1.6;
+}
+
+/* Navigation Bar */
+.navbar {
+    background: #2d3e50;
+    padding: 0.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .navbar a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background 0.2s;
+    }
+
+        .navbar a:hover {
+            background: #1abc9c;
+        }
+
+/* Header Section */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 2rem 1rem 1.5rem 1rem;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
+    margin-bottom: 2rem;
+}
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #1abc9c;
+    margin-bottom: 1rem;
+}
+
+.summary {
+    text-align: center;
+}
+
+    .summary h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: #2d3e50;
+    }
+
+    .summary p {
+        color: #555;
+        font-size: 1.1rem;
+    }
+
+/* Section Styles */
+section {
+    max-width: 700px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
+}
+
+    section h2 {
+        color: #1abc9c;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 0.5rem;
+    }
+
+    section ul {
+        list-style: disc inside;
+        margin-left: 1rem;
+    }
+
+    section li {
+        margin-bottom: 0.75rem;
+        font-size: 1.05rem;
+    }
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .header, section {
+        padding: 1rem;
+    }
+
+    section {
+        margin: 1rem;
+    }
 }
