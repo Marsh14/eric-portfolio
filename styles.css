@@ -132,13 +132,13 @@ section {
 .project-card {
     background: #f8f8f8;
     border: 3px solid var(--purple);
-    border-radius: 20px;
+    border-radius: 15px;
     box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
-    width: 220px;
+    width: 250px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
+    padding: 0.2rem 1.5rem 0.4rem 1.5rem;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -148,30 +148,34 @@ section {
     }
 
 .project-image {
-    width: 105%;
-    height: 140px;
+    width: 115%;
+    height: 180px;
     object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 0.8rem;
+    border-radius: 15px;
+    margin-bottom: 0.2rem;
+    
     border: 1.5px solid #ddd;
 }
 
 .project-info h3 {
-    margin: 0.2rem 0 0rem 0;
-    font-size: 1.1rem;
+    margin: 0.0rem 0 0rem 0;
+    font-size: 1.7rem;
     color: var(--purple);
     text-align: center;
 }
 
 .prize {
     color: #333;
-    font-size: 0.98rem;
+    font-size: 1.2rem;
     text-align: center;
+    
 }
+
 .tools {
-    color: #333;
-    font-size: 0.98rem;
+    color: var(--purple);
+    font-size: 1.2rem;
     text-align: center;
+    margin-bottom: 0.5rem; 
 }
 /* Experience */
 .experience-container {
@@ -201,8 +205,8 @@ section {
     }
 
 .experience-image {
-    width: 90px;
-    height: 90px;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
     border-radius: 10px;
     background: #fff;
@@ -237,7 +241,7 @@ section {
     font-size: 1.08rem;
 }
 
-/* Experience */
+
 
 .skills-container {
     display: flex;
