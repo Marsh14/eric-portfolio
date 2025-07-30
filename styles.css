@@ -38,17 +38,30 @@ body {
 /* Navigation Bar */
 .navbar {
     background: var(--purple);
-    padding: 0.8rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    width: 400px;
+    padding: 1.2rem 2rem;
+    border-radius: 50px / 50px;
+    box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+    display: flex;
+    justify-content: center; /* Center the ul horizontally */
+    align-items: center;
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
 }
+
+
 
     .navbar ul {
         list-style: none;
         display: flex;
         justify-content: center;
+        align-items: center;
         gap: 2rem;
+        margin: 0;
+        padding: 0;
     }
 
     .navbar a {
@@ -65,16 +78,50 @@ body {
             background: #000000;
         }
 
+
+.resume-float {
+    position: fixed;
+    right: 2.5rem;
+    bottom: 2.5rem;
+    z-index: 2000;
+    background: var(--purple);
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(44, 62, 80, 0.18);
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+    .resume-float:hover {
+        background: #fff;
+    }
+
+.resume-float-icon {
+    height: 48px; /* Adjust size as needed */
+    width: 48px;
+    display: block;
+}
+
+
+
+    
+
+
+
+
 /* Header Section */
 .header {
     display: flex;
     flex-direction: column;
     align-items: center;
     background: #000000;
-    padding: 4rem 1rem 3rem 1rem; /* Size */
+    padding: 10rem 1rem 3rem 1rem; /* Increased top padding from 4rem to 6rem */
     box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
     margin-bottom: 2rem;
 }
+
 
 
 .summary {
