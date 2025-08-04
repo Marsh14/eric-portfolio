@@ -7,13 +7,13 @@
 </head>
 <body>
 
-    <a href="Eric_Res.pdf" class="resume-float" download>
-        <img src="resume.png" alt="Download Resume" class="resume-float-icon" />
+    <a href="Eric_Res.pdf" class="resume-float hide-on-top" target="_blank" rel="noopener">
+        <img src="resume.png" alt="Resume" class="resume-float-icon" />
     </a>
 
 
     <!-- Navigation Bar -->
-    <nav class="navbar">
+    <nav class="navbar hide-on-top">
         <ul>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#experience">Experience</a></li>
@@ -81,7 +81,7 @@
                 <div class="project-info">
                     <h3>EUCF Website</h3>
                     <p class="tools">Next.js, CSS, Gitub</p>
-                    <p class="prize">GemiKnight 12 Hour AI Hackathon</p>
+                    <p class="prize">GemiKnight 12 Hour AI Hackathon Submission</p>
                 </div>
             </div>
             <div class="project-card">
@@ -196,7 +196,7 @@
                 <div class="skill-info">
                     <h4>Python</h4>
                 </div>
-                
+
             </div>
             <div class="skill-card">
                 <img src="ps.png" alt="Photoshop" class="skill-image">
@@ -204,7 +204,19 @@
                     <h4>Photoshop</h4>
                 </div>
             </div>
-</section>
-
+    </section>
+    <script>window.addEventListener('scroll', function() {
+    const showAt = 160; 
+    const navbar = document.querySelector('.navbar');
+    const resume = document.querySelector('.resume-float');
+    if (window.scrollY > showAt) {
+        navbar.classList.remove('hide-on-top');
+        resume.classList.remove('hide-on-top');
+    } else {
+        navbar.classList.add('hide-on-top');
+        resume.classList.add('hide-on-top');
+    }
+});
+window.dispatchEvent(new Event('scroll')); // Set initial state</script>
 </body>
 </html>

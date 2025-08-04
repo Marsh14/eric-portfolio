@@ -14,31 +14,34 @@ body, h1, h2, ul, li, p {
 .header h1 {
     font-size: 4rem; /* Larger main name */
     margin-bottom: 0.5rem;
-    color: #ffffff;
+    color: #fff;
     font-weight: bold;
+    -webkit-text-stroke: 1px var(--purple); /* Reduced from 2px */
+    text-stroke: 1px var(--purple);
+    text-shadow: 2px 2px 0 #4b014b, 4px 4px 8px rgba(130,3,133,0.3);
 }
 
 .header h2 {
     font-size: 2.2rem; /* Larger subtitle */
     margin-top: 0;
     margin-bottom: 1.5rem;
-    color: #ffffff;
+    color: #fff;
     font-weight: normal;
+    -webkit-text-stroke: 0.5px var(--purple); /* Reduced from 1px */
+    text-stroke: 0.5px var(--purple);
+    text-shadow: 1px 1px 0 #4b014b, 1px 1px 1px rgba(130,3,133,0.3);
 }
 
-.header h1 {
-    /* Purple border using text stroke */
-    -webkit-text-stroke: 2px var(--purple);
-    text-stroke: 2px var(--purple); /* For future compatibility */
-    /* 3D effect using text-shadow */
-    text-shadow: 2px 2px 0 #4b014b, 4px 4px 8px rgba(130,3,133,0.3);
-}
-.header h2 {
-    /* Purple border using text stroke */
-    -webkit-text-stroke: 1px var(--purple);
-    text-stroke: 1px var(--purple); /* For future compatibility */
-    /* 3D effect using text-shadow */
-    text-shadow: 1px 1px 0 #4b014b, 1px 1px 1px rgba(130,3,133,0.3);
+/* Remove or further reduce stroke on small screens */
+@media (max-width: 600px) {
+    .header h1 {
+        -webkit-text-stroke: 0.5px var(--purple);
+        text-stroke: 0.5px var(--purple);
+    }
+    .header h2 {
+        -webkit-text-stroke: 0.2px var(--purple);
+        text-stroke: 0.2px var(--purple);
+    }
 }
 
 .about-me {
@@ -87,7 +90,10 @@ body {
 
 /* Navigation Bar */
 .navbar {
-    background: var(--purple);
+    background: rgba(130, 3, 133, 0.7); /* semi-transparent purple */
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1.5px solid rgba(255,255,255,0.18);
     width: 400px;
     padding: 1.2rem 2rem;
     border-radius: 50px / 50px;
@@ -100,6 +106,12 @@ body {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
+}
+
+.hide-on-top {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
 }
 
 
@@ -136,17 +148,21 @@ body {
     z-index: 2000;
     background: var(--purple);
     border-radius: 50%;
-    box-shadow: 0 4px 16px rgba(44, 62, 80, 0.18);
+    //box-shadow: 0 4px 16px rgba(44, 62, 80, 0.18);
+    box-shadow: 0 4px 16px rgba(44, 62, 80, 0.18), 0 0 16px 2px var(--purple);
+    transition: box-shadow 0.3s;
     padding: 0.7rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s;
+    //transition: background 0.2s;
 }
 
     .resume-float:hover {
         background: #fff;
+        box-shadow: 0 8px 32px rgba(130,3,133,0.25), 0 0 32px 6px var(--purple);
     }
+    
 
 .resume-float-icon {
     height: 48px; /* Adjust size as needed */
@@ -164,15 +180,53 @@ body {
 /* Header Section */
 .header {
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
-    background: #000000;
-    padding: 20rem 1rem 20rem 1rem; /* Increased top and bottom padding */
+    background: radial-gradient(circle at 60% 40%, rgba(130,3,133,0.45) 0%, rgba(0,0,0,0.95) 80%);
+    background-size: 200% 200%;
+    background-position: 60% 40%;
+    animation: move-gradient 7s ease-in-out infinite alternate, fade-gradient 7s ease-in-out infinite alternate;
+    padding: 20rem 1rem 20rem 1rem;
     box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
     margin-bottom: 2rem;
 }
 
+    .header::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 170px; /* Adjust for a longer/shorter fade */
+        pointer-events: none;
+        z-index: 2;
+        background: linear-gradient( to bottom, rgba(0,0,0,0) 0%, #000 100% );
+    }
 
+@keyframes move-gradient {
+    0%   { background-position: 60% 40%; }
+    10%  { background-position: 55% 45%; }
+    25%  { background-position: 30% 60%; }
+    40%  { background-position: 70% 70%; }
+    55%  { background-position: 80% 30%; }
+    70%  { background-position: 40% 20%; }
+    85%  { background-position: 65% 60%; }
+    100% { background-position: 70% 30%; }
+}
+
+@keyframes fade-gradient {
+    0%   { opacity: 1; }
+    8%   { opacity: 0.85; }
+    18%  { opacity: 0.7; }
+    27%  { opacity: 0.95; }
+    38%  { opacity: 0.6; }
+    50%  { opacity: 0.8; }
+    62%  { opacity: 0.65; }
+    74%  { opacity: 0.9; }
+    85%  { opacity: 0.75; }
+    100% { opacity: 1; }
+}
 
 .summary {
     text-align: center;
