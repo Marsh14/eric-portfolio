@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Dance Fighter | Eric Nortmann</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --purple: #820385;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient( circle at 60% 40%, #820385 0%, #2d0030 80%, #000 100% );
+        }
+
+        @keyframes move-gradient {
+            0% {
+                background-position: 60% 40%;
+            }
+
+            10% {
+                background-position: 55% 45%;
+            }
+
+            25% {
+                background-position: 30% 60%;
+            }
+
+            40% {
+                background-position: 70% 70%;
+            }
+
+            55% {
+                background-position: 80% 30%;
+            }
+
+            70% {
+                background-position: 40% 20%;
+            }
+
+            85% {
+                background-position: 65% 60%;
+            }
+
+            100% {
+                background-position: 70% 30%;
+            }
+        }
+
+        @keyframes fade-gradient {
+            0% {
+                opacity: 1;
+            }
+
+            8% {
+                opacity: 0.85;
+            }
+
+            18% {
+                opacity: 0.7;
+            }
+
+            27% {
+                opacity: 0.95;
+            }
+
+            38% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            62% {
+                opacity: 0.65;
+            }
+
+            74% {
+                opacity: 0.9;
+            }
+
+            85% {
+                opacity: 0.75;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .project-detail-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-detail-card {
+            background: #fff;
+            border: 3px solid var(--purple);
+            border-radius: 15px;
+            /* Use a strong, fully opaque shadow to block background light */
+            
+            width: 100%;
+            max-width: 900px;
+            padding: 3rem 3rem;
+            margin: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+            position: relative; /* Ensure stacking context */
+        }
+
+        .project-detail-image {
+            width: 500px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 1.5px solid #ddd;
+            margin-bottom: 2rem;
+            background: #eee;
+        }
+
+        .project-detail-title {
+            color: var(--purple);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .project-detail-tools {
+            color: var(--purple);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .project-detail-prize {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+
+        .project-site-link {
+            display: inline-block;
+            margin-bottom: 1.2rem;
+            padding: 0.7rem 1.5rem;
+            background: var(--purple);
+            color: #fff;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+            .project-site-link:hover {
+                background: #4b014b;
+                color: #fff;
+            }
+
+        .project-detail-desc {
+            color: #222;
+            font-size: 1.15rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .back-link {
+            margin-top: 1.5rem;
+            color: var(--purple);
+            text-decoration: underline;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+            .back-link:hover {
+                color: #4b014b;
+            }
+    </style>
+</head>
+<body>
+    <div class="project-detail-container">
+        <div class="project-detail-card">
+            <img src="df.png" alt="Dance Fighter Characters" class="project-detail-image" />
+            <div class="project-detail-title">Dance Fighter</div>
+            <div class="project-detail-desc">
+                Dance Fighter is a fighting game developed in Unity made for the Knight Hacks Project Launch Event.
+                Its an event where you work on a project the whole semester and present at the end in a demo.
+                I was responsible for implementing the core health mechanics and using sliders,
+                integrated end game logic by counting rounds, resetting the game after each round,
+                and check to see if a player won a game by winning two rounds and making sure they cannot input moves after the round is over
+                . I also implemented the timer in game
+                and round countdown using Unitys Coroutine system. We ended up winning 3rd out of many projects at the Project Launch demo
+
+            </div>
+            <a href="https://devpost.com/software/dance-fighter?_gl=1*1eha11c*_gcl_au*MTM3ODQ0OTU0NS4xNzUxMTQ5Njc1*_ga*NjgzMDA0NTU1LjE3NTExNDk2NzU.*_ga_0YHJK3Y10M*czE3NTQ0Mjc5MTIkbzgkZzEkdDE3NTQ0MjgwMDQkajI5JGwwJGgw" class="project-site-link" target="_blank" rel="noopener">
+                View Full Project
+            </a>
+            <a href="index.html#projects" class="back-link">&larr; Back to Projects</a>
+        </div>
+    </div>
+</body>
+</html>
