@@ -16,8 +16,8 @@ body, h1, h2, ul, li, p {
     margin-bottom: 0.5rem;
     color: #fff;
     font-weight: bold;
-    -webkit-text-stroke: 1px var(--purple); /* Reduced from 2px */
-    text-stroke: 1px var(--purple);
+    /* -webkit-text-stroke: 1px var(--purple); */
+    /* text-stroke: 1px var(--purple); */
     text-shadow: 2px 2px 0 #4b014b, 4px 4px 8px rgba(130,3,133,0.3);
 }
 
@@ -27,20 +27,20 @@ body, h1, h2, ul, li, p {
     margin-bottom: 1.5rem;
     color: #fff;
     font-weight: normal;
-    -webkit-text-stroke: 0.5px var(--purple); /* Reduced from 1px */
-    text-stroke: 0.5px var(--purple);
+    /* -webkit-text-stroke: 0.5px var(--purple); */
+    /* text-stroke: 0.5px var(--purple); */
     text-shadow: 1px 1px 0 #4b014b, 1px 1px 1px rgba(130,3,133,0.3);
 }
 
 /* Remove or further reduce stroke on small screens */
 @media (max-width: 600px) {
     .header h1 {
-        -webkit-text-stroke: 0.5px var(--purple);
-        text-stroke: 0.5px var,--purple);
+        /* -webkit-text-stroke: 0.5px var(--purple); */
+        /* text-stroke: 0.5px var,--purple); */
     }
     .header h2 {
-        -webkit-text-stroke: 0.2px var(--purple);
-        text-stroke: 0.2px var(--purple);
+        /* -webkit-text-stroke: 0.2px var(--purple); */
+        /* text-stroke: 0.2px var(--purple); */
     }
 }
 
