@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dance Fighter | Eric Nortmann</title>
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -150,6 +151,7 @@
             margin-bottom: 1.2rem;
             text-align: center;
         }
+
         .project-site-link {
             display: inline-block;
             margin-bottom: 1.2rem;
@@ -187,6 +189,37 @@
             .back-link:hover {
                 color: #4b014b;
             }
+
+        @media (max-width: 600px) {
+            .project-detail-card {
+                padding: 1.2rem 0.5rem;
+                margin: 0.5rem;
+                max-width: 90vw;
+            }
+
+            .project-detail-image {
+                width: 90vw;
+                max-width: 98vw;
+                height: 140px;
+                margin-bottom: 1rem;
+            }
+
+            .project-detail-title {
+                font-size: 1.5rem;
+            }
+
+            .project-detail-tools,
+            .project-detail-prize,
+            .project-site-link,
+            .back-link {
+                font-size: 1rem;
+            }
+
+            .project-detail-desc {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
