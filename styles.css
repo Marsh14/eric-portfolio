@@ -615,3 +615,68 @@ section {
     .project-link .project-card {
         cursor: pointer;
     }
+/* Mini Nav Bar Styles */
+.mini-nav {
+    background: rgba(130, 3, 133, 0.7);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1.5px solid rgba(255,255,255,0.18);
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px / 50px;
+    box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 2rem;
+    right: 2.5rem;
+    z-index: 2001;
+    gap: 1.2rem;
+    transition: opacity 0.4s;
+}
+
+/* Mobile: Move mini-nav to bottom center */
+@media (max-width: 600px) {
+    .mini-nav {
+        top: auto;
+        bottom: 1.5rem;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: auto;
+        min-width: 0;
+        max-width: 95vw;
+        border-radius: 30px;
+        padding: 0.5rem 1rem;
+        gap: 2rem;
+        height: auto;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .mini-nav-icon {
+        width: 36px;
+        height: 36px;
+        max-width: 36px;
+        max-height: 36px;
+        object-fit: contain;
+        display: block;
+    }
+}
+
+/* Move resume-float to top right and hide it (if you want only the mini-nav at top) */
+.resume-float {
+    position: fixed;
+    top: 1.5rem;
+    right: 2.5rem;
+    bottom: auto;
+    z-index: 2000;
+    background: var(--purple);
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(44, 62, 80, 0.18), 0 0 16px 2px var(--purple);
+    transition: box-shadow 0.3s;
+    padding: 0.7rem;
+    display: none; /* Hide the floating resume button if using mini-nav */
+    align-items: center;
+    justify-content: center;
+}
