@@ -10,6 +10,16 @@
             --purple: #820385;
         }
 
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
         body, html {
             height: 100%;
             margin: 0;
@@ -206,6 +216,7 @@
     </style>
 </head>
 <body>
+    <canvas id="starfield"></canvas>
     <div class="project-detail-container">
         <div class="project-detail-card">
             <img src="pics/sbb.png" alt="Super Bionic Bash" class="project-detail-image" />
@@ -213,7 +224,7 @@
             <div class="project-detail-desc">
                 Super Bionic Bash is a game that I am currently working on with my time at Limbitless Solutions.
                 Limbitless focuses on making bionic arms for kids and they use video games to help them get used to the arms.
-                Super Bionic Bash is a party style game and I am currently helping work on minigames for the game using Blueprints. I have worked on 
+                Super Bionic Bash is a party style game and I am currently helping work on minigames for the game using Blueprints. I have worked on
                 two minigames so far.
                 The game is being developed in Unreal Engine and is intended to be used with a bionic arm controller but can be used
                 with a normal controller also.
@@ -221,5 +232,55 @@
             <a href="index.html#projects" class="back-link">&larr; Back to Projects</a>
         </div>
     </div>
+    <script>const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
+const STAR_COUNT = 120;
+const STAR_COLOR = 'rgba(255,255,255,0.85)';
+const STAR_SIZE = [0.5, 1.2];
+const STAR_SPEED = [0.05, 0.25];
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+function randomBetween(a, b) {
+    return a + Math.random() * (b - a);
+}
+
+function createStars() {
+    stars = [];
+    for (let i = 0; i < STAR_COUNT; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: randomBetween(STAR_SIZE[0], STAR_SIZE[1]),
+            speed: randomBetween(STAR_SPEED[0], STAR_SPEED[1])
+        });
+    }
+}
+createStars();
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let star of stars) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
+        ctx.fillStyle = STAR_COLOR;
+        ctx.shadowColor = '#fff';
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        star.y += star.speed;
+        if (star.y > canvas.height) {
+            star.x = Math.random() * canvas.width;
+            star.y = 0;
+        }
+    }
+    requestAnimationFrame(animate);
+}
+animate();</script>
 </body>
 </html>
