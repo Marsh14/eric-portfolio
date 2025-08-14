@@ -214,6 +214,10 @@ body {
     padding: 0 1rem; /* Remove large vertical padding */
     box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
     margin-bottom: 0; /* Remove space below header */
+    text-shadow: 0 0 4px var(--purple), 0 0 4px var(--purple), 0 1px 1px #000;
+    /* Optional: add a purple outline (works in most browsers) */
+    -webkit-text-stroke: 1px var(--purple);
+    text-stroke: 2px var(--purple);
 }
 
     .header::after {
