@@ -1,15 +1,26 @@
 ﻿/* Reset some default styles */
 
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
 :root {
     --purple: #820385;
 }
-   
+/*Montserrat*/
+/*Orbitron*/
 body, h1, h2, ul, li, p {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+h1, h2, h3, .navbar a, .project-info h3, .experience-info h3, section h2 {
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    letter-spacing: 0.5px;
+}
 
 .header h1 {
     font-size: 4rem; /* Larger main name */
@@ -268,12 +279,17 @@ section {
 }
 
     section h2 {
-        color: var(--purple);
+        color: #fff;
         margin-bottom: 1rem;
         font-size: 3rem;
-        border-bottom: 2px solid #f0f0f0;
+        /* border-bottom: 2px solid var(--purple); */
         padding-bottom: 0.5rem;
-        text-align: center; /* Center the section titles */
+        text-align: center;
+        /* Add text shadow for purple glow */
+        text-shadow: 0 0 4px var(--purple), 0 0 16px var(--purple), 0 2px 2px #000;
+        /* Optional: add a purple outline (works in most browsers) */
+        -webkit-text-stroke: 2px var(--purple);
+        text-stroke: 2px var(--purple); /* Not widely supported, but safe to include */
     }
 
     section ul {
@@ -330,7 +346,7 @@ section {
 
 .project-info h3 {
     margin: 0.0rem 0 0rem 0;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     color: var(--purple);
     text-align: center;
 }
