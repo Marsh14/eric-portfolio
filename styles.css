@@ -292,7 +292,7 @@ section {
         text-shadow: 0 0 4px var(--purple), 0 0 16px var(--purple), 0 2px 2px #000;
         /* Optional: add a purple outline (works in most browsers) */
         -webkit-text-stroke: 2px var(--purple);
-        text-stroke: 2px var(--purple); /* Not widely supported, but safe to include */
+        text-stroke: 2px var,--purple); /* Not widely supported, but safe to include */
     }
 
     section ul {
@@ -482,9 +482,27 @@ section {
         max-width: 100%;
     }
 
+    .mini-nav {
+        /* Move to BOTTOM MIDDLE */
+        top: auto;
+        right: auto;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        /* Other adjustments for smaller screens */
+        max-width: 95vw;
+        padding: 0.5rem 1rem;
+        gap: 2rem;
+    }
+
+    .mini-nav-icon {
+        width: 36px;
+        height: 36px;
+    }
+
         .about-me .profile-photo {
-            width: 220px;
-            height: 220px;
+            width: 300px;
+            height: 300px;
             margin-left: 0;
             margin-bottom: 1rem;
         }
@@ -501,10 +519,12 @@ section {
 
         .header h1 {
             font-size: 2.5rem;
+            text-align: center; /* Center the main name on smaller screens */
         }
 
         .header h2 {
             font-size: 2.0rem;
+            text-align: center; /* Center the subtitle on smaller screens */
         }
 }
 
@@ -521,7 +541,7 @@ section {
 
         .navbar a {
             padding: 0.3rem 0.5rem; /* Reduce padding inside nav links */
-            font-size: 1rem; /* Optional: slightly smaller text */
+            font-size: 0.9rem; 
         }
 
     .about-me {
@@ -549,7 +569,7 @@ section {
     }
 
     section h2 {
-        font-size: 2rem;
+        font-size: 3.0rem;
     }
 
     /* Only stack projects, not skills */
@@ -647,24 +667,42 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 1.5rem;
     position: fixed;
+    z-index: 2001;
+    transition: opacity 0.4s;
+    /* == Default position for desktop: TOP RIGHT == */
     top: 2rem;
     right: 2.5rem;
-    /* bottom: 2.5rem; */
-    /* left: 50%; */
-    /* transform: translateX(-50%); */
-    z-index: 2001;
-    gap: 1.5rem;
-    transition: opacity 0.4s;
 }
 
 .mini-nav-icon {
-    width: 30px;               /* Larger icon size */
+    width: 30px;
     height: 30px;
-    max-width: 48px;
-    max-height: 48px;
     object-fit: contain;
     display: block;
+}
+
+
+
+@media (max-width: 1000px) {
+    .mini-nav {
+        
+        top: auto;
+        right: auto;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        
+        max-width: 95vw;
+        padding: 0.5rem 1rem;
+        gap: 2rem;
+    }
+
+    .mini-nav-icon {
+        width: 36px;
+        height: 36px;
+    }
 }
 
 /* Mobile: Move mini-nav to bottom center */
@@ -682,7 +720,7 @@ section {
         padding: 0.5rem 1rem;
         gap: 2rem;
         height: auto;
-        flex-direction: row;
+        flex-direction: row !important;
         align-items: center;
         justify-content: center;
     }
