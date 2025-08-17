@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dance Fighter | Eric Nortmann</title>
+    <title>Campfire Cryptid | Eric Nortmann</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         :root {
@@ -28,7 +28,7 @@
 
         body {
             min-height: 100vh;
-            background: radial-gradient( circle at 60% 40%, #820385 0%, #2d0030 80%, #000 100% );
+            background: #000000
         }
 
         @keyframes move-gradient {
@@ -240,9 +240,17 @@
             <div class="project-detail-title">Campfire Cryptid</div>
             <div class="project-detail-desc">
                 Campfire Cryptid was a horror survival game made in Unity for the Game Dev Knights Summer 2025 Game Jam.
-                This was my first time working in Unity 6 so it was a great learning experience. I helped make the Shooting Eyes minigame in the game.
-                I used Unity's new Input System to handle the movement of the crosshair and used Unity's UI to make the eyes spawn in random coordinates on the screen.
-                I also helped implement the global data in the game to keep track of the night timer and the fire level. This game won the Community Favorite award in the jam.
+                This was my first time working in Unity 6 so it was a great learning experience. I helped make the Shooting Eyes minigame in the game. This was a minigame where you had to shoot eyes that would spawn around to stop the monster from attacking you.
+                Heres some code for the crosshair movement:
+                <img src="pics/ccmovement.png" alt="Movement Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
+                I used Unity's new Input System to handle the movement of the crosshair, this code basically checks to see if WASD are pressed and moves the crosshair accordingly. I also used the Clamp function to set bounds for the crosshair so it doesnt go off the map.
+                To check for shooting the eyes I used a function that gets the RectTransform of the crosshair and checks to see if it overlaps with any of the eye RectTransforms by getting the four corners of the eyes and crosshair RectTransforms and checking if any of the corners overlap. I also shrunk
+                the crosshair to make it harder to shoot the eyes. I also made the eyes spawn in random locations every second and a half using this code:
+                <img src="pics/cccompare.png" alt="Compare Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
+                <img src="pics/ccse.png" alt="Spawn Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
+                I also helped implement the global data in the game to keep track of the night timer and the fire level.
+                <img src="pics/ccgd.png" alt="GD Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
+                This game won the Community Favorite award in the jam and I had a lot of fun working on it during the summer.
 
             </div>
             <a href="https://elusivechicken47.itch.io/campfire-cryptid" class="project-site-link" target="_blank" rel="noopener">
