@@ -5,6 +5,49 @@
 :root {
     --purple: #820385;
 }
+html {
+    scroll-behavior: smooth;
+}
+/* 1. The Star Texture Layer */
+.header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Load the pattern */
+    background-image: url('pics/stars.gif');
+    background-repeat: repeat;
+    background-size: cover; /* Adjust this number to zoom the stars in/out */
+    /* --- THE MAGIC: BLENDING --- */
+    /* 'overlay' takes the B&W stars and uses them to lighten/darken the purple */
+    mix-blend-mode: overlay;
+    /* Adjust Opacity to control how visible the stars are */
+    /* 0.1 = Very Subtle, 0.3 = More Distinct */
+    opacity: 0.1;
+    /* Positioning */
+    z-index: 0;
+    pointer-events: none; /* Lets clicks pass through to buttons if any */
+}
+
+/* 2. Important: Bring Text to the Front */
+/* Since we added a layer on top, we must force the text higher so it's readable */
+/* --- ADD THESE TWO NEW BLOCKS INSTEAD --- */
+
+/* 1. Keep main text relative so it sits over the stars */
+.header h1,
+.header h2 {
+    padding: 0rem 0rem 0.5rem 0rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* 2. Only bring the arrow to the front, don't change its position type */
+/* It will use the 'position: absolute' defined later in your CSS file */
+.header .scroll-indicator {
+    z-index: 2;
+}
 /*Montserrat*/
 /*Orbitron*/
 body, h1, h2, ul, li, p {
@@ -29,7 +72,11 @@ h1, h2, h3, .navbar a, .project-info h3, .experience-info h3, section h2 {
     font-weight: bold;
     /* -webkit-text-stroke: 1px var(--purple); */
     /* text-stroke: 1px var(--purple); */
-    text-shadow: 2px 2px 0 #4b014b, 4px 4px 8px rgba(130,3,133,0.3);
+    /* Replace the text-stroke lines with this richer shadow */
+    text-shadow: 0 0 5px #fff, /* White core */
+    0 0 10px var(--purple), /* Inner glow */
+    0 0 20px var(--purple), /* Middle glow */
+    0 0 40px var(--purple); /* Outer aura */
 }
 
 .header h2 {
@@ -40,7 +87,11 @@ h1, h2, h3, .navbar a, .project-info h3, .experience-info h3, section h2 {
     font-weight: normal;
     /* -webkit-text-stroke: 0.5px var(--purple); */
     /* text-stroke: 0.5px var,--purple); */
-    text-shadow: 1px 1px 0 #4b014b, 1px 1px 1px rgba(130,3,133,0.3);
+    /* Replace the text-stroke lines with this richer shadow */
+    text-shadow: 0 0 5px #fff, /* White core */
+    0 0 10px var(--purple), /* Inner glow */
+    0 0 20px var(--purple), /* Middle glow */
+    0 0 40px var(--purple); /* Outer aura */
 }
 
 /* Remove or further reduce stroke on small screens */
@@ -110,24 +161,51 @@ body {
 
 
 /* Navigation Bar */
+/* --- UPDATED NAVBAR (Matches Project Cards) --- */
 .navbar {
-    background: rgba(130, 3, 133, 0.7); /* semi-transparent purple */
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border: 1.5px solid rgba(255,255,255,0.18);
+    /* The Dark Glass Theme */
+    background: rgba(50, 30, 80, 0.5); /* Changed from bright purple to dark glass */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(130, 3, 133, 0.3); /* Matches card borders */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Matches card shadows */
+    /* Layout (Kept the same) */
     width: 400px;
     padding: 1.2rem 2rem;
-    border-radius: 50px / 50px;
-    box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+    border-radius: 50px;
     display: flex;
-    justify-content: center; /* Center the ul horizontally */
+    justify-content: center;
     align-items: center;
     position: fixed;
     top: 2rem;
-   /* Move to top right */
-    left: 50%; 
-    transform: translateX(-50%); 
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1000;
+    /* Transition for the scroll effect */
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* --- UPDATED MINI-NAV (Matches Project Cards) --- */
+.mini-nav {
+    /* The Dark Glass Theme */
+    background: rgba(50, 30, 80, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(130, 3, 133, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    /* Layout (Kept the same) */
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    position: fixed;
+    z-index: 2001;
+    top: 2rem;
+    right: 2.5rem;
+    /* Transition for the scroll effect */
+    transition: opacity 0.4s ease-in-out;
 }
 
 .hide-on-top {
@@ -217,7 +295,7 @@ body {
     text-shadow: 0 0 4px var(--purple), 0 0 4px var(--purple), 0 1px 1px #000;
     /* Optional: add a purple outline (works in most browsers) */
     -webkit-text-stroke: 1px var(--purple);
-    text-stroke: 2px var(--purple);
+    /*text-stroke: 2px var(--purple);*/
 }
 
     .header::after {
@@ -268,7 +346,7 @@ body {
 
     .summary p {
         color: #ffffff;
-        font-size: 1.3rem; /* Size */
+        font-size: 1.5rem; /* Size */
     }
 
 
@@ -292,7 +370,7 @@ section {
         text-shadow: 0 0 4px var(--purple), 0 0 16px var(--purple), 0 2px 2px #000;
         /* Optional: add a purple outline (works in most browsers) */
         -webkit-text-stroke: 2px var(--purple);
-        text-stroke: 2px var,--purple); /* Not widely supported, but safe to include */
+        /*text-stroke: 2px var,--purple);  */
     }
 
     section ul {
@@ -311,33 +389,13 @@ section {
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
+    text-align: center;
     margin-left: -15px; /* Move projects to the left */
     width: calc(100% + 40px); /* Prevent clipping on the right */
 }
 
-.project-card {
-    background: #f8f8f8;
-    border: 3px solid var(--purple);
-    border-radius: 15px;
-    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
-    width: 270px;
-    height: 320px; /* Fixed height for uniformity */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.5rem 1.5rem 0.4rem 1.5rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-    overflow: hidden; /* Prevent content overflow */
-    justify-content: flex-start; /* Align content to the top */
-}
-
-    .project-card:hover {
-        transform: translateY(-6px) scale(1.03);
-        box-shadow: 0 6px 20px rgba(44, 62, 80, 0.15);
-    }
-
 .project-image {
-    width: 280px; /* Fixed width */
+    width: 100%; /* Fixed width */
     height: 170px; /* Fixed height */
     object-fit: cover; /* Ensures image fills the area and is cropped if needed */
     border-radius: 15px;
@@ -347,25 +405,26 @@ section {
     background: #eee; /* Optional: placeholder background for transparency */
 }
 
-.project-info h3 {
-    margin: 0.0rem 0 0rem 0;
-    font-size: 1.5rem;
-    color: var(--purple);
-    text-align: center;
-}
-
 .prize {
-    color: #333;
+    color: #fff;
     font-size: 1.2rem;
     text-align: center;
     
 }
 
-.tools {
-    color: var(--purple);
-    font-size: 1.2rem;
+.tools, .duration {
+    color: #ccc; /* Light gray text */
+    font-family: 'Courier New', monospace; /* Code font */
+    font-size: 0.95rem;
+    background: rgba(255, 255, 255, 0.1); /* Subtle container */
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
     text-align: center;
-    margin-bottom: 0.5rem; 
+    margin-bottom: 8px;
+    width: fit-content;
+    align-self: flex-start;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 /* Experience */
 .experience-container {
@@ -375,103 +434,183 @@ section {
     align-items: center;
 }
 
+/* --- SHARED VISUAL STYLES (Add this block) --- */
+/* This ensures the cards are visible BEFORE you hover them */
+.project-card, .experience-card {
+    background: rgba(50, 30, 80, 0.5); /* The dark glass background */
+    backdrop-filter: blur(12px); /* The blur effect */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(130, 3, 133, 0.3); /* The purple border */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    color: #eee;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.project-card {
+    width: 300px;
+    height: 350px;
+    flex-direction: column; /* Stack Image on top of Text */
+    align-items: center;
+    text-align: center;
+}
+
 .experience-card {
-    background: #f8f8f8;
-    border: 2.5px solid var(--purple);
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(44, 62, 80, 0.10);
-    width: 95%;
-    max-width: 800px;
     display: flex;
-    align-items: flex-start;
-    padding: 2rem;
+    flex-direction: row; /* Puts Image next to Text */
+    align-items: flex-start; /* Aligns items to the top */
+    justify-content: flex-start; /* Aligns content to the left */
+    text-align: left; /* Forces all text inside to be left-aligned */
     gap: 2rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+    width: 90%; /* Take up most of the container width */
+    max-width: 1000px; /* Stop it from getting too big on huge screens */
+    height: auto; /* Grow to fit the text */
+    padding: 2rem;
+    flex-direction: row; /* Image on Left, Text on Right */
+    align-items: center; /* Center vertically */
+    justify-content: flex-start;
+    text-align: left; /* Read text from left to right */
+    gap: 2rem; /* Space between image and text */
 }
 
-    .experience-card:hover {
-        transform: translateY(-6px) scale(1.02);
-        box-shadow: 0 8px 32px rgba(44, 62, 80, 0.18);
+    .project-card:hover, .experience-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 0 20px rgba(130, 3, 133, 0.5), 0 0 40px rgba(130, 3, 133, 0.2), 0 0 4px var(--purple);
+        border-color: var(--purple);
+        background: rgba(15, 10, 25, 0.8);
     }
 
+.project-info h3, .experience-info h3 {
+    /* Force all titles to be exactly 2 lines tall */
+    font-size: 1.5rem; /* adjust up/down as needed */
+    height: auto; /* remove the fixed 3.2rem so text can grow */
+    line-height: 1.15;
+    /* Vertically center the text within that space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Prevent overflow issues */
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    text-align: center;
+    /* Ensure the neon glow and font settings apply */
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 5px var(--purple), 0 0 10px var(--purple);
+    color: #fff;
+}
 .experience-image {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-    border-radius: 10px;
-    background: #fff;
-    border: 1.5px solid #ddd;
-    margin-right: 1rem;
+    width: 180px; /* distinct size for the logo */
+    height: 180px;
+    object-fit: contain; /* Ensures the logo doesn't stretch weirdly */
+    flex-shrink: 0; /* CRITICAL: Prevents text from squishing the image */
+    margin: 0; /* Remove old margins, we use 'gap' now */
+    border-radius: 10px; /* Optional: keeps consistent rounded corners */
+    background: white; /* Optional: If you need a white box behind transparency logos */
+    margin-top: 5px;
 }
-
 .experience-info {
-    flex: 1;
+    font-size: 1rem;
+    flex: 1; /* Takes up all remaining space on the right */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Forces children to align left */
 }
 
+    /* Force the Title to align left (overriding your global center rules) */
     .experience-info h3 {
-        margin: 0 0 0.3rem 0;
-        font-size: 1.4rem;
-        color: var(--purple);
+        font-size: 2.5rem; /* Adjust this number to make it bigger */
+        font-weight: 700; /* Make it bold */
+        margin-bottom: 0.5rem;
+        /* ensure the height doesn't clip the larger text */
+        height: auto;
+        line-height: 1.2;
     }
+
+    /* Align the date/company text */
+    .company, .experience-info p {
+        text-align: left;
+        width: 100%;
+    }
+
+/* FORCE the date box to shrink */
+.experience-info .duration {
+    width: fit-content !important;  /* Overrides the 100% width rule */
+    display: inline-block;          /* Ensures it behaves like a text block */
+    margin-bottom: 1rem;            /* Ensures space below it */
+}
 
 .company {
+    font-size: 1.6rem; /* Adjust this number */
+    color: #e0e0e0; /* CHANGED from #333 to light gray so it's visible */
     font-weight: bold;
-    color: #333;
-    margin-bottom: 0.2rem;
-}
-
-.duration {
-    color: #666;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem; /* Adds space between company and the description */
+    display: block; /* Ensures it sits on its own line */
 }
 
 .description {
-    color: #222;
-    font-size: 1.08rem;
+    color: #fff;
+    font-size: 1.25rem;
 }
 
 
 
-.skills-container {
+.skills-category h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    /* Optional: Add your neon glow to headers */
+    text-shadow: 0 0 5px var(--purple);
+}
+
+.skill-grid {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    flex-wrap: wrap; /* Allows them to drop to next line */
     justify-content: center;
-    margin-top: 1.5rem;
+    gap: 1rem; /* Space between pills */
+    margin-bottom: 2rem; /* Space between categories */
 }
 
-.skill-card {
-    background: #f8f8f8;
-    border: 2px solid var(--purple);
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
-    width: 120px;
+.skill-pill {
+    /* Layout */
     display: flex;
-    flex-direction: column;
     align-items: center;
-    padding: 0.8rem 0.5rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px; /* Keeps them round */
+    /* --- THE MATCHING GLASS THEME --- */
+    background: rgba(50, 30, 80, 0.5); /* Same dark purple glass */
+    backdrop-filter: blur(12px); /* Blur effect */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(130, 3, 133, 0.3); /* Same purple border */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Same drop shadow */
+    /* Text */
+    color: #eee;
+    font-weight: 500;
+    font-size: 1rem;
+    /* Animation */
+    transition: all 0.3s ease;
+    cursor: default;
 }
 
-    .skill-card:hover {
-        transform: translateY(-4px) scale(1.04);
-        box-shadow: 0 6px 20px rgba(44, 62, 80, 0.13);
+    /* Hover Effect (Matches the Project Card Glow) */
+    .skill-pill:hover {
+        transform: translateY(-3px);
+        /* Brighter border and glow */
+        border-color: var(--purple);
+        box-shadow: 0 0 15px rgba(130, 3, 133, 0.5), 0 0 4px var(--purple);
+        /* Slightly darker background on hover for contrast */
+        background: rgba(15, 10, 25, 0.8);
     }
 
-.skill-image {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-    margin-bottom: 0.5rem;
-}
-
-.skill-info h4 {
-    margin: 0;
-    font-size: 1rem;
-    color: var(--purple);
-    text-align: center;
-}
+    /* Ensure the icons inside stay small */
+    .skill-pill img {
+        width: 25px;
+        height: 25px;
+        object-fit: contain;
+        margin-right: 0.5rem;
+    }
 
 
 /* Responsive Design */
@@ -525,6 +664,25 @@ section {
         .header h2 {
             font-size: 2.0rem;
             text-align: center; /* Center the subtitle on smaller screens */
+        }
+
+}
+
+/* --- MOBILE & TABLET ADJUSTMENTS FOR SKILLS --- */
+@media (max-width: 1024px) {
+    .skill-pill {
+        /* 1. Bigger Touch Target (Padding) */
+        padding: 0.8rem 1.5rem; /* Increased from 0.6rem 1.2rem */
+        /* 2. Bigger Text */
+        font-size: 1.25rem; /* Increased from 1rem */
+        /* 3. More Space Between Them */
+        gap: 0.8rem;
+    }
+
+        /* 4. Bigger Icons to Match */
+        .skill-pill img {
+            width: 46px; /* Increased from 25px */
+            height: 46px;
         }
 }
 
@@ -595,6 +753,34 @@ section {
         font-size: 1.15rem;
     }
 
+    .project-info h3, .experience-info h3 {
+        font-size: 1.7rem;
+    }
+    /* Inside @media (max-width: 600px) */
+    .experience-info .duration {
+        align-self: center; /* Centers the small box on mobile */
+        margin-bottom: 1rem;
+    }
+    .experience-info, .experience-info p, .company {
+        font-size: 1.25rem;
+    }
+        .experience-info h3,
+        .company,
+        .experience-info p {
+            text-align: center !important;
+            width: 100%;
+            justify-content: center; /* Use this if the H3 is a flex container */
+        }
+        .experience-info ul {
+            text-align: center;
+            list-style-position: inside;
+            padding-left: 0;
+        }
+    .experience-image {
+        margin-right: 0; /* Remove right margin from desktop */
+        margin-bottom: 0; /* Add bottom margin */
+        margin-top: 0;
+    }
     .project-image {
         width: 100%;
         height: 200px;
@@ -606,18 +792,18 @@ section {
     }
 
     .experience-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 1rem;
-        padding: 1.2rem 0.5rem;
+        flex-direction: column; /* Stack Image on top of Text */
+        align-items: center; /* Center the image and text block */
+        text-align: center; /* Center the general text */
+        height: auto; /* Let it grow vertically */
+        padding-bottom: 2rem;
     }
 
     .experience-image {
         margin-right: 0;
-        margin-bottom: 1rem;
-        width: 140px;
-        height: 140px;
+        margin-bottom: 0rem;
+        width: 200px;
+        height: 200px;
     }
 
     .experience-info {
@@ -656,25 +842,6 @@ section {
         cursor: pointer;
     }
 /* Mini Nav Bar Styles */
-.mini-nav {
-    background: rgba(130, 3, 133, 0.7);
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border: 1.5px solid rgba(255,255,255,0.18);
-    padding: 1rem 1.5rem;
-    border-radius: 50px;
-    box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    position: fixed;
-    z-index: 2001;
-    transition: opacity 0.4s;
-    /* == Default position for desktop: TOP RIGHT == */
-    top: 2rem;
-    right: 2.5rem;
-}
 
 .mini-nav-icon {
     width: 30px;
@@ -762,4 +929,26 @@ section {
 }
 body, html {
     background: #000;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    font-size: 5rem;
+    color: white;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dance Fighter | Eric Nortmann</title>
+    <title>V-RADS | Eric Nortmann</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         :root {
@@ -19,6 +19,7 @@
             z-index: 0;
             pointer-events: none;
         }
+
         body, html {
             height: 100%;
             margin: 0;
@@ -235,32 +236,29 @@
     <canvas id="starfield"></canvas>
     <div class="project-detail-container">
         <div class="project-detail-card">
-            <img src="pics/df.png" alt="Dance Fighter Characters" class="project-detail-image" />
-            <div class="project-detail-title">Dance Fighter</div>
+            <img src="pics/vrads.png" alt="V-RADS" class="project-detail-image" />
+            <div class="project-detail-title">V-RADS</div>
             <div class="project-detail-desc">
-                Dance Fighter is a fighting game developed in Unity made for the Knight Hacks Project Launch Event.
-                Its an event where you work on a project the whole semester and present at the end in a demo.
-                I was responsible for implementing the core health mechanics and using sliders. Here is an example of the health bar and how it works:
-                <img src="pics/dfhealth.png" alt="Health Bar Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
-                Everytime someone gets hit it would bring their health down and the health bar would update accordingly. It would also effect the offensive bar of the players which is a mechanic that lets the players hit harder but take more damage.
-                I also implemented the timer for the game and round countdown, which would start at 99 seconds and count down to zero. Here is an example of the timer:
-                <img src="pics/dftimer.png" alt="Timer Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
-                I used a coroutine to manage the countdown and update the UI in real-time and I also helped account for end game logic when the timer reached zero. Whoever had the most health at the end of the timer would win the round but if they had the same health I also accounted for it which would result in a draw.
-                I also added round logic to the game, which would keep track of how many rounds each player won and display it on the UI. The game would end when one player won 2 out of 3 rounds. Heres an eample of the round logic code and how it looked in game:
-                <img src="pics/dfendgame.png" alt="Round Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
-                <img src="pics/dfbox.png" alt="Round Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
-                The boxes right next to the timer would show how many rounds each player won and it would update in real-time as the game progressed.
+                Virtual Radiation Awareness & Detection System (V-RADS) is an immersive VR training simulation developed using Unity and C#. It was created in partnership with the U.S. Department of Energy to educate users on radiation safety in a controlled virtual environment.
 
-                This was personally my favorite project to work on. I learned a lot and my teammates were amazing! We ended up winning 3rd out of 15 projects at the Project Launch demo.
-
+                This was a cool project to work on because I was able to implement realistic radiation calculation using code, for a specfic example I used the inverse square law formula to determine radiation intensity based on distance from a source.
+                <img src="pics/isl.png" alt="Inverse square law" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
+                Here's the geiger counter that used this calculation to provide real-time feedback to users as they navigated the virtual environment.
+                <img src="pics/geiger.png" alt="Inverse square law" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
+                During this project I wanted to focus on replability and modularity of code, so I created a custom radiation framework that allowed for easy addition of new radiation sources and detectors without modifying existing code. This made it easier to expand the simulation in the future. I also added the Fisher-Yates shuffle algorithm to randomize active hazards, ensuring users had a unique experience each time they used the simulation.
+                <img src="pics/fys.png" alt="Inverse square law" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
             </div>
-            <a href="https://devpost.com/software/dance-fighter?_gl=1*1eha11c*_gcl_au*MTM3ODQ0OTU0NS4xNzUxMTQ5Njc1*_ga*NjgzMDA0NTU1LjE3NTExNDk2NzU.*_ga_0YHJK3Y10M*czE3NTQ0Mjc5MTIkbzgkZzEkdDE3NTQ0MjgwMDQkajI5JGwwJGgw" class="project-site-link" target="_blank" rel="noopener">
+            <a href="pics/design_doc.pdf" class="project-site-link" target="_blank" rel="noopener">
+                Design Document
+            </a>
+            <a href="https://github.com/Marsh14/V-RADS" class="project-site-link" target="_blank" rel="noopener">
                 View Full Project
             </a>
             <a href="index.html#projects" class="back-link">&larr; Back to Projects</a>
         </div>
     </div>
-    <script>const canvas = document.getElementById('starfield');
+    <script>
+const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
 let stars = [];
 const STAR_COUNT = 120;
