@@ -19,6 +19,7 @@
             z-index: 0;
             pointer-events: none;
         }
+
         body, html {
             height: 100%;
             margin: 0;
@@ -27,83 +28,7 @@
 
         body {
             min-height: 100vh;
-            background: #000000
-        }
-
-        @keyframes move-gradient {
-            0% {
-                background-position: 60% 40%;
-            }
-
-            10% {
-                background-position: 55% 45%;
-            }
-
-            25% {
-                background-position: 30% 60%;
-            }
-
-            40% {
-                background-position: 70% 70%;
-            }
-
-            55% {
-                background-position: 80% 30%;
-            }
-
-            70% {
-                background-position: 40% 20%;
-            }
-
-            85% {
-                background-position: 65% 60%;
-            }
-
-            100% {
-                background-position: 70% 30%;
-            }
-        }
-
-        @keyframes fade-gradient {
-            0% {
-                opacity: 1;
-            }
-
-            8% {
-                opacity: 0.85;
-            }
-
-            18% {
-                opacity: 0.7;
-            }
-
-            27% {
-                opacity: 0.95;
-            }
-
-            38% {
-                opacity: 0.6;
-            }
-
-            50% {
-                opacity: 0.8;
-            }
-
-            62% {
-                opacity: 0.65;
-            }
-
-            74% {
-                opacity: 0.9;
-            }
-
-            85% {
-                opacity: 0.75;
-            }
-
-            100% {
-                opacity: 1;
-            }
+            background: #000000;
         }
 
         .project-detail-container {
@@ -111,14 +36,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 2rem 0;
         }
 
         .project-detail-card {
             background: #fff;
             border: 3px solid var(--purple);
             border-radius: 15px;
-            /* Use a strong, fully opaque shadow to block background light */
-
             width: 100%;
             max-width: 900px;
             padding: 3rem 3rem;
@@ -127,11 +51,12 @@
             flex-direction: column;
             align-items: center;
             z-index: 2;
-            position: relative; /* Ensure stacking context */
+            position: relative;
         }
 
         .project-detail-image {
-            width: 500px;
+            width: 100%;
+            max-width: 500px;
             height: 250px;
             object-fit: cover;
             border-radius: 15px;
@@ -145,24 +70,12 @@
             font-size: 2.2rem;
             margin-bottom: 0.5rem;
             text-align: center;
-        }
-
-        .project-detail-tools {
-            color: var(--purple);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-
-        .project-detail-prize {
-            color: #333;
-            font-size: 1.1rem;
-            margin-bottom: 1.2rem;
-            text-align: center;
+            font-weight: bold;
         }
 
         .project-site-link {
             display: inline-block;
+            margin-top: 1.5rem;
             margin-bottom: 1.2rem;
             padding: 0.7rem 1.5rem;
             background: var(--purple);
@@ -172,6 +85,7 @@
             font-size: 1.1rem;
             text-decoration: none;
             transition: background 0.2s, color 0.2s;
+            align-self: center;
         }
 
             .project-site-link:hover {
@@ -180,53 +94,83 @@
             }
 
         .project-detail-desc {
-            color: #222;
+            color: #333;
             font-size: 1.15rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            text-align: left;
+            width: 100%;
+        }
+
+            .project-detail-desc p {
+                margin-bottom: 1.2rem;
+            }
+
+        /* New CSS for your Code Blocks and Images */
+        .tech-section {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eaeaea;
+        }
+
+            .tech-section h3 {
+                color: var(--purple);
+                font-size: 1.4rem;
+                margin-bottom: 0.5rem;
+            }
+
+        .project-detail-gif {
+            width: 100%;
+            max-width: 750px;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem auto;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
         }
 
         .back-link {
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             color: var(--purple);
-            text-decoration: underline;
-            font-weight: 500;
-            font-size: 1rem;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
             transition: color 0.2s;
+            align-self: center;
         }
 
             .back-link:hover {
                 color: #4b014b;
+                text-decoration: underline;
             }
 
         @media (max-width: 600px) {
             .project-detail-card {
-                padding: 1.2rem 0.5rem;
-                margin: 0.5rem;
-                max-width: 90vw;
+                padding: 1.5rem 1rem;
+                margin: 1rem;
             }
 
             .project-detail-image {
                 width: 90vw;
-                max-width: 98vw;
                 height: 140px;
                 margin-bottom: 1rem;
             }
 
             .project-detail-title {
-                font-size: 1.5rem;
-            }
-
-            .project-detail-tools,
-            .project-detail-prize,
-            .project-site-link,
-            .back-link {
-                font-size: 1rem;
+                font-size: 1.8rem;
             }
 
             .project-detail-desc {
+                font-size: 1.05rem;
+            }
+
+            .tech-section h3 {
+                font-size: 1.2rem;
+            }
+
+            .project-site-link,
+            .back-link {
                 font-size: 1rem;
-                margin-bottom: 1rem;
             }
         }
     </style>
@@ -237,78 +181,91 @@
         <div class="project-detail-card">
             <img src="pics/df.png" alt="Dance Fighter Characters" class="project-detail-image" />
             <div class="project-detail-title">Dance Fighter</div>
+
             <div class="project-detail-desc">
-                Dance Fighter is a fighting game developed in Unity made for the Knight Hacks Project Launch Event.
-                Its an event where you work on a project the whole semester and present at the end in a demo.
-                I was responsible for implementing the core health mechanics and using sliders. Here is an example of the health bar and how it works:
-                <img src="pics/dfhealth.png" alt="Health Bar Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
-                Everytime someone gets hit it would bring their health down and the health bar would update accordingly. It would also effect the offensive bar of the players which is a mechanic that lets the players hit harder but take more damage.
-                I also implemented the timer for the game and round countdown, which would start at 99 seconds and count down to zero. Here is an example of the timer:
-                <img src="pics/dftimer.png" alt="Timer Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
-                I used a coroutine to manage the countdown and update the UI in real-time and I also helped account for end game logic when the timer reached zero. Whoever had the most health at the end of the timer would win the round but if they had the same health I also accounted for it which would result in a draw.
-                I also added round logic to the game, which would keep track of how many rounds each player won and display it on the UI. The game would end when one player won 2 out of 3 rounds. Heres an eample of the round logic code and how it looked in game:
-                <img src="pics/dfendgame.png" alt="Round Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
-                <img src="pics/dfbox.png" alt="Round Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
-                The boxes right next to the timer would show how many rounds each player won and it would update in real-time as the game progressed.
+                <p>Dance Fighter is a fighting game developed in Unity for the Knight Hacks Project Launch Event, a 12-week development sprint culminating in a live showcase.</p>
+                <p>This was an incredible collaborative experience. Working alongside an amazing team, I took charge of the core UI logic and game state management, helping us secure 3rd place out of 15 projects at the final demo.</p>
 
-                This was personally my favorite project to work on. I learned a lot and my teammates were amazing! We ended up winning 3rd out of 15 projects at the Project Launch demo.
+                <!-- Technical Sections Broken Down for Scannability -->
+                <div class="tech-section">
+                    <h3>Dynamic Health & Offensive Systems</h3>
+                    <p>I engineered the core health mechanics, utilizing UI sliders to track real-time combat data. When a player takes damage, their health dynamically updates while simultaneously fueling an "offensive bar." This risk-reward mechanic allows players to hit harder but makes them more vulnerable to incoming damage.</p>
+                    <img src="pics/dfhealth.png" alt="Health Bar Example" class="project-detail-gif" />
+                </div>
 
+                <div class="tech-section">
+                    <h3>Asynchronous Timer & Match Logic</h3>
+                    <p>I implemented the match timer and countdown systems. Using C# coroutines, I managed the countdown logic to update the UI asynchronously without blocking the main execution thread. I also programmed the end-of-round logic, calculating the winner based on remaining health when the timer hits zero, including edge cases for tie-breakers.</p>
+                    <img src="pics/dftimer.png" alt="Timer Example" class="project-detail-gif" />
+                </div>
+
+                <div class="tech-section">
+                    <h3>Round State Management</h3>
+                    <p>To track match progression, I built a state management system that logs round victories and updates the UI accordingly. The game operates on a "best two out of three" format, with UI indicators next to the timer instantly reflecting the current match standing as the fight progresses.</p>
+                    <img src="pics/dfendgame.png" alt="Round Logic Code Example" class="project-detail-gif" />
+                    <img src="pics/dfbox.png" alt="Round UI Example" class="project-detail-gif" />
+                </div>
             </div>
+
             <a href="https://devpost.com/software/dance-fighter?_gl=1*1eha11c*_gcl_au*MTM3ODQ0OTU0NS4xNzUxMTQ5Njc1*_ga*NjgzMDA0NTU1LjE3NTExNDk2NzU.*_ga_0YHJK3Y10M*czE3NTQ0Mjc5MTIkbzgkZzEkdDE3NTQ0MjgwMDQkajI5JGwwJGgw" class="project-site-link" target="_blank" rel="noopener">
-                View Full Project
+                View Full Project on Devpost
             </a>
+
             <a href="index.html#projects" class="back-link">&larr; Back to Projects</a>
         </div>
     </div>
-    <script>const canvas = document.getElementById('starfield');
-const ctx = canvas.getContext('2d');
-let stars = [];
-const STAR_COUNT = 120;
-const STAR_COLOR = 'rgba(255,255,255,0.85)';
-const STAR_SIZE = [0.5, 1.2];
-const STAR_SPEED = [0.05, 0.25];
 
-function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resize);
-resize();
+    <script>
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        const STAR_COUNT = 120;
+        const STAR_COLOR = 'rgba(255,255,255,0.85)';
+        const STAR_SIZE = [0.5, 1.2];
+        const STAR_SPEED = [0.05, 0.25];
 
-function randomBetween(a, b) {
-    return a + Math.random() * (b - a);
-}
-
-function createStars() {
-    stars = [];
-    for (let i = 0; i < STAR_COUNT; i++) {
-        stars.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            r: randomBetween(STAR_SIZE[0], STAR_SIZE[1]),
-            speed: randomBetween(STAR_SPEED[0], STAR_SPEED[1])
-        });
-    }
-}
-createStars();
-
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let star of stars) {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
-        ctx.fillStyle = STAR_COLOR;
-        ctx.shadowColor = '#fff';
-        ctx.shadowBlur = 8;
-        ctx.fill();
-        star.y += star.speed;
-        if (star.y > canvas.height) {
-            star.x = Math.random() * canvas.width;
-            star.y = 0;
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
-    }
-    requestAnimationFrame(animate);
-}
-animate();</script>
+        window.addEventListener('resize', resize);
+        resize();
+
+        function randomBetween(a, b) {
+            return a + Math.random() * (b - a);
+        }
+
+        function createStars() {
+            stars = [];
+            for (let i = 0; i < STAR_COUNT; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: randomBetween(STAR_SIZE[0], STAR_SIZE[1]),
+                    speed: randomBetween(STAR_SPEED[0], STAR_SPEED[1])
+                });
+            }
+        }
+        createStars();
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let star of stars) {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
+                ctx.fillStyle = STAR_COLOR;
+                ctx.shadowColor = '#fff';
+                ctx.shadowBlur = 8;
+                ctx.fill();
+                star.y += star.speed;
+                if (star.y > canvas.height) {
+                    star.x = Math.random() * canvas.width;
+                    star.y = 0;
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 </html>

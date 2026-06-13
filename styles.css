@@ -1,63 +1,29 @@
-﻿/* Reset some default styles */
-
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
 :root {
     --purple: #820385;
 }
-html {
-    scroll-behavior: smooth;
-}
-/* 1. The Star Texture Layer */
-.header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+
+/* --- Base Elements & Typography --- */
+html, body {
     height: 100%;
-    /* Load the pattern */
-    background-image: url('pics/stars.gif');
-    background-repeat: repeat;
-    background-size: cover; /* Adjust this number to zoom the stars in/out */
-    /* --- THE MAGIC: BLENDING --- */
-    /* 'overlay' takes the B&W stars and uses them to lighten/darken the purple */
-    mix-blend-mode: overlay;
-    /* Adjust Opacity to control how visible the stars are */
-    /* 0.1 = Very Subtle, 0.3 = More Distinct */
-    opacity: 0.1;
-    /* Positioning */
-    z-index: 0;
-    pointer-events: none; /* Lets clicks pass through to buttons if any */
-}
-
-/* 2. Important: Bring Text to the Front */
-/* Since we added a layer on top, we must force the text higher so it's readable */
-/* --- ADD THESE TWO NEW BLOCKS INSTEAD --- */
-
-/* 1. Keep main text relative so it sits over the stars */
-.header h1,
-.header h2 {
-    padding: 0rem 0rem 0.5rem 0rem;
-    position: relative;
-    z-index: 2;
-}
-
-/* 2. Only bring the arrow to the front, don't change its position type */
-/* It will use the 'position: absolute' defined later in your CSS file */
-.header .scroll-indicator {
-    z-index: 2;
-}
-/*Montserrat*/
-/*Orbitron*/
-body, h1, h2, ul, li, p {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    background: #000;
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
+    color: #222;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+h1, h2, h3, ul, li, p {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 h1, h2, h3, .navbar a, .project-info h3, .experience-info h3, section h2 {
@@ -65,111 +31,96 @@ h1, h2, h3, .navbar a, .project-info h3, .experience-info h3, section h2 {
     letter-spacing: 0.5px;
 }
 
-.header h1 {
-    font-size: 4rem; /* Larger main name */
-    margin-bottom: 0.5rem;
-    color: #fff;
-    font-weight: bold;
-    /* -webkit-text-stroke: 1px var(--purple); */
-    /* text-stroke: 1px var(--purple); */
-    /* Replace the text-stroke lines with this richer shadow */
-    text-shadow: 0 0 5px #fff, /* White core */
-    0 0 10px var(--purple), /* Inner glow */
-    0 0 20px var(--purple), /* Middle glow */
-    0 0 40px var(--purple); /* Outer aura */
+/* --- Global Starfield Layer --- */
+#starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
 }
 
-.header h2 {
-    font-size: 2.2rem; /* Larger subtitle */
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    color: #fff;
-    font-weight: normal;
-    /* -webkit-text-stroke: 0.5px var(--purple); */
-    /* text-stroke: 0.5px var,--purple); */
-    /* Replace the text-stroke lines with this richer shadow */
-    text-shadow: 0 0 5px #fff, /* White core */
-    0 0 10px var(--purple), /* Inner glow */
-    0 0 20px var(--purple), /* Middle glow */
-    0 0 40px var(--purple); /* Outer aura */
-}
-
-/* Remove or further reduce stroke on small screens */
-@media (max-width: 600px) {
-    .header h1 {
-        /* -webkit-text-stroke: 0.5px var(--purple); */
-        /* text-stroke: 0.5px var,--purple); */
-    }
-    .header h2 {
-        /* -webkit-text-stroke: 0.2px var(--purple); */
-        /* text-stroke: 0.2px var,--purple); */
-    }
-
-    .header {
-        height: 100vh;
-        padding: 0 0.5rem;
-    }
-
-    .header h2 {
-        font-size: 1.5rem; /* Already set */
-        text-align: center; /* Center the subtitle on mobile */
-    }
-}
-
-.about-me {
+/* --- Header & Hero Section --- */
+.header {
     display: flex;
-    flex-direction: row-reverse;
+    position: relative;
+    flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    margin: 2rem 0;
-    justify-content: center; /* Center the whole section */
-    padding-right: 0;
-    max-width: 1100px; /* Optional: keeps the section from being too wide */
-    margin-left: auto;
-    margin-right: auto;
+    justify-content: center;
+    background: radial-gradient(circle at 60% 40%, rgba(130,3,133,0.45) 0%, rgba(0,0,0,0.95) 80%);
+    background-size: 200% 200%;
+    background-position: 60% 40%;
+    animation: move-gradient 7s ease-in-out infinite alternate, fade-gradient 7s ease-in-out infinite alternate;
+    height: 100vh;
+    padding: 0 1rem;
+    margin-bottom: 0;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
+    text-shadow: 0 0 4px var(--purple), 0 0 4px var(--purple), 0 1px 1px #000;
+    -webkit-text-stroke: 1px var(--purple);
 }
 
-    .about-me .profile-photo {
-        width: 350px;
-        height: 350px;
-        object-fit: cover;
-        border-radius: 50%;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        margin-left: 2rem;
-        border: 4px solid var(--purple);
-        flex-shrink: 0; /* Prevent shrinking in flexbox */
+    .header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('pics/stars.gif');
+        background-repeat: repeat;
+        background-size: cover;
+        mix-blend-mode: overlay;
+        opacity: 0.1;
+        z-index: 0;
+        pointer-events: none;
     }
-img.profile-photo {
-    display: block;
-}
 
-.about-me .summary {
-    max-width: 700px; /* Increase this value for more text per line */
-    min-width: 300px;
-    text-align: center; /* More readable for longer lines */
-    flex: 1 1 0; /* Allow the text to take up available space */
-}
+    .header::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 170px;
+        pointer-events: none;
+        z-index: 2;
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, #000 100%);
+    }
 
-body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #000000;
-    color: #222;
-    line-height: 1.6;
-}
+    .header h1, .header h2 {
+        padding: 0rem 0rem 0.5rem 0rem;
+        position: relative;
+        z-index: 2;
+        color: #fff;
+        text-shadow: 0 0 5px #fff, 0 0 10px var(--purple), 0 0 20px var(--purple), 0 0 40px var(--purple);
+    }
 
+    .header h1 {
+        font-size: 4rem;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+    }
 
+    .header h2 {
+        font-size: 2.2rem;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        font-weight: normal;
+    }
 
+    .header .scroll-indicator {
+        z-index: 2;
+    }
 
-/* Navigation Bar */
-/* --- UPDATED NAVBAR (Matches Project Cards) --- */
+/* --- Navigation --- */
 .navbar {
-    /* The Dark Glass Theme */
-    background: rgba(50, 30, 80, 0.5); /* Changed from bright purple to dark glass */
+    background: rgba(50, 30, 80, 0.5);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(130, 3, 133, 0.3); /* Matches card borders */
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Matches card shadows */
-    /* Layout (Kept the same) */
+    border: 1px solid rgba(130, 3, 133, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     width: 400px;
     padding: 1.2rem 2rem;
     border-radius: 50px;
@@ -181,40 +132,8 @@ body {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
-    /* Transition for the scroll effect */
     transition: opacity 0.4s ease-in-out;
 }
-
-/* --- UPDATED MINI-NAV (Matches Project Cards) --- */
-.mini-nav {
-    /* The Dark Glass Theme */
-    background: rgba(50, 30, 80, 0.5);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(130, 3, 133, 0.3);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-    /* Layout (Kept the same) */
-    padding: 1rem 1.5rem;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    position: fixed;
-    z-index: 2001;
-    top: 2rem;
-    right: 2.5rem;
-    /* Transition for the scroll effect */
-    transition: opacity 0.4s ease-in-out;
-}
-
-.hide-on-top {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s;
-}
-
-
 
     .navbar ul {
         list-style: none;
@@ -237,121 +156,42 @@ body {
     }
 
         .navbar a:hover {
-            background: #000000;
+            background: #000;
         }
 
-
-.resume-float {
-    position: fixed;
-    right: 2.5rem;
-    bottom: 2.5rem;
-    z-index: 2000;
-    background: var(--purple);
-    border-radius: 50%;
-    //box-shadow: 0 4px 16px rgba(44, 62, 80, 0.18);
-    box-shadow: 0 4px 16px rgba(44, 62, 80, 0.18), 0 0 16px 2px var(--purple);
-    transition: box-shadow 0.3s;
-    padding: 0.7rem;
+.mini-nav {
+    background: rgba(50, 30, 80, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(130, 3, 133, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    //transition: background 0.2s;
+    align-items: center;
+    gap: 1.5rem;
+    position: fixed;
+    z-index: 2001;
+    top: 2rem;
+    right: 2.5rem;
+    transition: opacity 0.4s ease-in-out;
 }
 
-    .resume-float:hover {
-        background: #fff;
-        box-shadow: 0 8px 32px rgba(130,3,133,0.25), 0 0 32px 6px var(--purple);
-    }
-    
-
-.resume-float-icon {
-    height: 48px; /* Adjust size as needed */
-    width: 48px;
+.mini-nav-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
     display: block;
 }
 
-
-
-    
-
-
-
-
-/* Header Section */
-.header {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Center content vertically */
-    background: radial-gradient(circle at 60% 40%, rgba(130,3,133,0.45) 0%, rgba(0,0,0,0.95) 80%);
-    background-size: 200% 200%;
-    background-position: 60% 40%;
-    animation: move-gradient 7s ease-in-out infinite alternate, fade-gradient 7s ease-in-out infinite alternate;
-    height: 100vh; /* Full viewport height */
-    padding: 0 1rem; /* Remove large vertical padding */
-    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
-    margin-bottom: 0; /* Remove space below header */
-    text-shadow: 0 0 4px var(--purple), 0 0 4px var(--purple), 0 1px 1px #000;
-    /* Optional: add a purple outline (works in most browsers) */
-    -webkit-text-stroke: 1px var(--purple);
-    /*text-stroke: 2px var(--purple);*/
+.hide-on-top {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
 }
 
-    .header::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -1px;
-        height: 170px; /* Adjust for a longer/shorter fade */
-        pointer-events: none;
-        z-index: 2;
-        background: linear-gradient( to bottom, rgba(0,0,0,0) 0%, #000 100% );
-    }
-
-@keyframes move-gradient {
-    0%   { background-position: 60% 40%; }
-    10%  { background-position: 55% 45%; }
-    25%  { background-position: 30% 60%; }
-    40%  { background-position: 70% 70%; }
-    55%  { background-position: 80% 30%; }
-    70%  { background-position: 40% 20%; }
-    85%  { background-position: 65% 60%; }
-    100% { background-position: 70% 30%; }
-}
-
-@keyframes fade-gradient {
-    0%   { opacity: 1; }
-    8%   { opacity: 0.85; }
-    18%  { opacity: 0.7; }
-    27%  { opacity: 0.95; }
-    38%  { opacity: 0.6; }
-    50%  { opacity: 0.8; }
-    62%  { opacity: 0.65; }
-    74%  { opacity: 0.9; }
-    85%  { opacity: 0.75; }
-    100% { opacity: 1; }
-}
-
-.summary {
-    text-align: center;
-}
-
-    .summary h1 {
-        font-size: 2.7rem; /* Size */
-        margin-bottom: 0.2rem;
-        color: #ffffff;
-    }
-
-    .summary p {
-        color: #ffffff;
-        font-size: 1.5rem; /* Size */
-    }
-
-
-
-/* Section Styles */
+/* --- Section Formatting --- */
 section {
     max-width: 1200px;
     margin: 2rem auto;
@@ -364,13 +204,9 @@ section {
         color: #fff;
         margin-bottom: 0.1rem;
         font-size: 6rem;
-        /* border-bottom: 2px solid var(--purple); */
         text-align: center;
-        /* Add text shadow for purple glow */
         text-shadow: 0 0 4px var(--purple), 0 0 16px var(--purple), 0 2px 2px #000;
-        /* Optional: add a purple outline (works in most browsers) */
         -webkit-text-stroke: 2px var(--purple);
-        /*text-stroke: 2px var,--purple);  */
     }
 
     section ul {
@@ -383,94 +219,16 @@ section {
         font-size: 1.05rem;
     }
 
-/* Projects */
-.projects-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
-    text-align: center;
-    margin-left: -15px; /* Move projects to the left */
-    width: calc(100% + 40px); /* Prevent clipping on the right */
-}
-
-.project-image {
-    width: 100%; /* Fixed width */
-    height: 170px; /* Fixed height */
-    object-fit: cover; /* Ensures image fills the area and is cropped if needed */
-    border-radius: 15px;
-    margin-bottom: 0.2rem;
-    border: 1.5px solid #ddd;
-    display: block;
-    background: #eee; /* Optional: placeholder background for transparency */
-}
-
-.prize {
-    color: #fff;
-    font-size: 1.2rem;
-    text-align: center;
-    
-}
-
-.tools, .duration {
-    color: #ccc; /* Light gray text */
-    font-family: 'Courier New', monospace; /* Code font */
-    font-size: 0.95rem;
-    background: rgba(255, 255, 255, 0.1); /* Subtle container */
-    padding: 4px 8px;
-    border-radius: 6px;
-    display: inline-block;
-    text-align: center;
-    margin-bottom: 8px;
-    width: fit-content;
-    align-self: flex-start;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-/* Experience */
-.experience-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    align-items: center;
-}
-
-/* --- SHARED VISUAL STYLES (Add this block) --- */
-/* This ensures the cards are visible BEFORE you hover them */
+/* --- Shared Glass Card Styles --- */
 .project-card, .experience-card {
-    background: rgba(50, 30, 80, 0.5); /* The dark glass background */
-    backdrop-filter: blur(12px); /* The blur effect */
+    background: rgba(50, 30, 80, 0.5);
+    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(130, 3, 133, 0.3); /* The purple border */
+    border: 1px solid rgba(130, 3, 133, 0.3);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     color: #eee;
     border-radius: 15px;
     transition: all 0.3s ease;
-}
-
-.project-card {
-    width: 300px;
-    height: 350px;
-    flex-direction: column; /* Stack Image on top of Text */
-    align-items: center;
-    text-align: center;
-}
-
-.experience-card {
-    display: flex;
-    flex-direction: row; /* Puts Image next to Text */
-    align-items: flex-start; /* Aligns items to the top */
-    justify-content: flex-start; /* Aligns content to the left */
-    text-align: left; /* Forces all text inside to be left-aligned */
-    gap: 2rem;
-    width: 90%; /* Take up most of the container width */
-    max-width: 1000px; /* Stop it from getting too big on huge screens */
-    height: auto; /* Grow to fit the text */
-    padding: 2rem;
-    flex-direction: row; /* Image on Left, Text on Right */
-    align-items: center; /* Center vertically */
-    justify-content: flex-start;
-    text-align: left; /* Read text from left to right */
-    gap: 2rem; /* Space between image and text */
 }
 
     .project-card:hover, .experience-card:hover {
@@ -481,348 +239,102 @@ section {
     }
 
 .project-info h3, .experience-info h3 {
-    /* Force all titles to be exactly 2 lines tall */
-    font-size: 1.5rem; /* adjust up/down as needed */
-    height: auto; /* remove the fixed 3.2rem so text can grow */
+    font-size: 1.5rem;
+    height: auto;
     line-height: 1.15;
-    /* Vertically center the text within that space */
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Prevent overflow issues */
     overflow: hidden;
     margin-bottom: 0.5rem;
-    line-height: 1.2;
     text-align: center;
-    /* Ensure the neon glow and font settings apply */
     font-family: 'Orbitron', sans-serif;
     text-shadow: 0 0 5px var(--purple), 0 0 10px var(--purple);
     color: #fff;
 }
-.experience-image {
-    width: 180px; /* distinct size for the logo */
-    height: 180px;
-    object-fit: contain; /* Ensures the logo doesn't stretch weirdly */
-    flex-shrink: 0; /* CRITICAL: Prevents text from squishing the image */
-    margin: 0; /* Remove old margins, we use 'gap' now */
-    border-radius: 10px; /* Optional: keeps consistent rounded corners */
-    background: white; /* Optional: If you need a white box behind transparency logos */
-    margin-top: 5px;
-}
-.experience-info {
-    font-size: 1rem;
-    flex: 1; /* Takes up all remaining space on the right */
+
+/* --- About Me --- */
+.about-me {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Forces children to align left */
-}
-
-    /* Force the Title to align left (overriding your global center rules) */
-    .experience-info h3 {
-        font-size: 2.5rem; /* Adjust this number to make it bigger */
-        font-weight: 700; /* Make it bold */
-        margin-bottom: 0.5rem;
-        /* ensure the height doesn't clip the larger text */
-        height: auto;
-        line-height: 1.2;
-    }
-
-    /* Align the date/company text */
-    .company, .experience-info p {
-        text-align: left;
-        width: 100%;
-    }
-
-/* FORCE the date box to shrink */
-.experience-info .duration {
-    width: fit-content !important;  /* Overrides the 100% width rule */
-    display: inline-block;          /* Ensures it behaves like a text block */
-    margin-bottom: 1rem;            /* Ensures space below it */
-}
-
-.company {
-    font-size: 1.6rem; /* Adjust this number */
-    color: #e0e0e0; /* CHANGED from #333 to light gray so it's visible */
-    font-weight: bold;
-    margin-bottom: 1rem; /* Adds space between company and the description */
-    display: block; /* Ensures it sits on its own line */
-}
-
-.description {
-    color: #fff;
-    font-size: 1.25rem;
-}
-
-
-
-.skills-category h3 {
-    color: #fff;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    text-align: center;
-    /* Optional: Add your neon glow to headers */
-    text-shadow: 0 0 5px var(--purple);
-}
-
-.skill-grid {
-    display: flex;
-    flex-wrap: wrap; /* Allows them to drop to next line */
-    justify-content: center;
-    gap: 1rem; /* Space between pills */
-    margin-bottom: 2rem; /* Space between categories */
-}
-
-.skill-pill {
-    /* Layout */
-    display: flex;
+    flex-direction: row-reverse;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1.2rem;
-    border-radius: 50px; /* Keeps them round */
-    /* --- THE MATCHING GLASS THEME --- */
-    background: rgba(50, 30, 80, 0.5); /* Same dark purple glass */
-    backdrop-filter: blur(12px); /* Blur effect */
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(130, 3, 133, 0.3); /* Same purple border */
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Same drop shadow */
-    /* Text */
-    color: #eee;
-    font-weight: 500;
-    font-size: 1rem;
-    /* Animation */
-    transition: all 0.3s ease;
-    cursor: default;
+    gap: 2rem;
+    margin: 2rem auto;
+    justify-content: center;
+    padding-right: 0;
+    max-width: 1100px;
 }
-
-    /* Hover Effect (Matches the Project Card Glow) */
-    .skill-pill:hover {
-        transform: translateY(-3px);
-        /* Brighter border and glow */
-        border-color: var(--purple);
-        box-shadow: 0 0 15px rgba(130, 3, 133, 0.5), 0 0 4px var(--purple);
-        /* Slightly darker background on hover for contrast */
-        background: rgba(15, 10, 25, 0.8);
-    }
-
-    /* Ensure the icons inside stay small */
-    .skill-pill img {
-        width: 25px;
-        height: 25px;
-        object-fit: contain;
-        margin-right: 0.5rem;
-    }
-
-
-/* Responsive Design */
-@media (max-width: 900px) {
-    .about-me {
-        flex-direction: column;
-        align-items: center;
-        max-width: 100%;
-    }
-
-    .mini-nav {
-        /* Move to BOTTOM MIDDLE */
-        top: auto;
-        right: auto;
-        bottom: 1.5rem;
-        left: 50%;
-        transform: translateX(-50%);
-        /* Other adjustments for smaller screens */
-        max-width: 95vw;
-        padding: 0.5rem 1rem;
-        gap: 2rem;
-    }
-
-    .mini-nav-icon {
-        width: 36px;
-        height: 36px;
-    }
-
-        .about-me .profile-photo {
-            width: 300px;
-            height: 300px;
-            margin-left: 0;
-            margin-bottom: 1rem;
-        }
-
-        .about-me .summary {
-            max-width: 95vw;
-            min-width: 0;
-            text-align: center;
-        }
-
-    .header {
-        padding: 6rem 1rem 3rem 1rem;
-    }
-
-        .header h1 {
-            font-size: 2.5rem;
-            text-align: center; /* Center the main name on smaller screens */
-        }
-
-        .header h2 {
-            font-size: 2.0rem;
-            text-align: center; /* Center the subtitle on smaller screens */
-        }
-
-}
-
-/* --- MOBILE & TABLET ADJUSTMENTS FOR SKILLS --- */
-@media (max-width: 1024px) {
-    .skill-pill {
-        /* 1. Bigger Touch Target (Padding) */
-        padding: 0.8rem 1.5rem; /* Increased from 0.6rem 1.2rem */
-        /* 2. Bigger Text */
-        font-size: 1.25rem; /* Increased from 1rem */
-        /* 3. More Space Between Them */
-        gap: 0.8rem;
-    }
-
-        /* 4. Bigger Icons to Match */
-        .skill-pill img {
-            width: 46px; /* Increased from 25px */
-            height: 46px;
-        }
-}
-
-@media (max-width: 600px) {
-    .navbar {
-        width: 85vw;
-        padding: 0.5rem 0.5rem;
-        border-radius: 30px;
-    }
-
-        .navbar ul {
-            gap: 1.5rem; /* Reduce space between nav items */
-        }
-
-        .navbar a {
-            padding: 0.3rem 0.5rem; /* Reduce padding inside nav links */
-            font-size: 0.9rem; 
-        }
-
-    .about-me {
-        flex-direction: column-reverse;
-        align-items: center;
-    }
 
     .about-me .profile-photo {
-        width: 200px;
-        height: 200px;
+        width: 350px;
+        height: 350px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        margin-left: 2rem;
+        border: 4px solid var(--purple);
+        flex-shrink: 0;
     }
 
-    .header {
-        height: 100vh;
-        padding: 0 0.5rem;
-    }
+img.profile-photo {
+    display: block;
+}
 
-    .header h1 {
-        font-size: 2.7rem; /* Increased from 1.5rem */
-    }
-
-    .header h2 {
-        font-size: 1.3rem; /* Increased from 1rem */
-        text-align: center; /* Center the subtitle on mobile */
-    }
-
-    section h2 {
-        font-size: 3.0rem;
-    }
-
-    /* Only stack projects, not skills */
-    .projects-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 1.2rem;
-    }
-
-    /* Let skills wrap in rows */
-    .skills-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: flex-start;
-    }
-
-    .project-card {
-        width: 80vw;
-        max-width: 80vw;
-        height: 400px;
-        padding: 0.5rem 1rem 1rem 1rem;
-        font-size: 1.15rem;
-    }
-
-    .project-info h3, .experience-info h3 {
-        font-size: 1.7rem;
-    }
-    /* Inside @media (max-width: 600px) */
-    .experience-info .duration {
-        align-self: center; /* Centers the small box on mobile */
-        margin-bottom: 1rem;
-    }
-    .experience-info, .experience-info p, .company {
-        font-size: 1.25rem;
-    }
-        .experience-info h3,
-        .company,
-        .experience-info p {
-            text-align: center !important;
-            width: 100%;
-            justify-content: center; /* Use this if the H3 is a flex container */
-        }
-        .experience-info ul {
-            text-align: center;
-            list-style-position: inside;
-            padding-left: 0;
-        }
-    .experience-image {
-        margin-right: 0; /* Remove right margin from desktop */
-        margin-bottom: 0; /* Add bottom margin */
-        margin-top: 0;
-    }
-    .project-image {
-        width: 100%;
-        height: 200px;
-        margin-bottom: 0.5rem;
-    }
-
-    .project-info h3 {
-        font-size: 2rem;
-    }
-
-    .experience-card {
-        flex-direction: column; /* Stack Image on top of Text */
-        align-items: center; /* Center the image and text block */
-        text-align: center; /* Center the general text */
-        height: auto; /* Let it grow vertically */
-        padding-bottom: 2rem;
-    }
-
-    .experience-image {
-        margin-right: 0;
-        margin-bottom: 0rem;
-        width: 200px;
-        height: 200px;
-    }
-
-    .experience-info {
-        width: 100%;
-    }
+.about-me .summary {
+    max-width: 700px;
+    min-width: 300px;
+    text-align: center;
+    flex: 1 1 0;
 }
 
 .summary h1 {
-    font-size: 2rem;
-    margin-bottom: 0.1rem; /* Reduce space below your name */
-    color: #ffffff;
+    font-size: 2.7rem;
+    margin-bottom: 0.2rem;
+    color: #fff;
 }
 
 .summary h2 {
-    font-size: 1.5rem; /* Size */
+    font-size: 1.5rem;
     margin-top: 0;
     margin-bottom: 1rem;
-    color: #ffffff;
+    color: #fff;
     font-weight: normal;
+}
+
+.summary p {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+/* --- Projects --- */
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    text-align: center;
+    margin-left: -15px;
+    width: calc(100% + 40px);
+}
+
+.project-card {
+    width: 300px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.project-image {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 0.2rem;
+    border: 1.5px solid #ddd;
+    display: block;
+    background: #eee;
 }
 
 .project-link {
@@ -831,9 +343,7 @@ section {
     display: inline-block;
 }
 
-    .project-link:visited,
-    .project-link:active,
-    .project-link:focus {
+    .project-link:visited, .project-link:active, .project-link:focus {
         text-decoration: none;
         color: inherit;
     }
@@ -841,67 +351,149 @@ section {
     .project-link .project-card {
         cursor: pointer;
     }
-/* Mini Nav Bar Styles */
 
-.mini-nav-icon {
-    width: 30px;
-    height: 30px;
+/* --- Experience --- */
+.experience-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.experience-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    gap: 2rem;
+    width: 90%;
+    max-width: 1000px;
+    height: auto;
+    padding: 2rem;
+}
+
+.experience-image {
+    width: 180px;
+    height: 180px;
     object-fit: contain;
+    flex-shrink: 0;
+    margin: 5px 0 0 0;
+    border-radius: 10px;
+    background: white;
+}
+
+.experience-info {
+    font-size: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+    .experience-info h3 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        height: auto;
+        line-height: 1.2;
+    }
+
+    .company, .experience-info p {
+        text-align: left;
+        width: 100%;
+    }
+
+.company {
+    font-size: 1.6rem;
+    color: #e0e0e0;
+    font-weight: bold;
+    margin-bottom: 1rem;
     display: block;
 }
 
-
-
-@media (max-width: 1000px) {
-    .mini-nav {
-        
-        top: auto;
-        right: auto;
-        bottom: 1.5rem;
-        left: 50%;
-        transform: translateX(-50%);
-        
-        max-width: 95vw;
-        padding: 0.5rem 1rem;
-        gap: 2rem;
-    }
-
-    .mini-nav-icon {
-        width: 36px;
-        height: 36px;
-    }
+.description {
+    color: #fff;
+    font-size: 1.25rem;
 }
 
-/* Mobile: Move mini-nav to bottom center */
-@media (max-width: 600px) {
-    .mini-nav {
-        top: auto;
-        bottom: 1.5rem;
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        width: auto;
-        min-width: 0;
-        max-width: 95vw;
-        border-radius: 30px;
-        padding: 0.5rem 1rem;
-        gap: 2rem;
-        height: auto;
-        flex-direction: row !important;
-        align-items: center;
-        justify-content: center;
+.experience-info .duration {
+    width: fit-content !important;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.prize {
+    color: #fff;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.tools, .duration {
+    color: #ccc;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 8px;
+    width: fit-content;
+    align-self: flex-start;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- Skills --- */
+.skills-category h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    text-shadow: 0 0 5px var(--purple);
+}
+
+.skill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.skill-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    background: rgba(50, 30, 80, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(130, 3, 133, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    color: #eee;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+    .skill-pill:hover {
+        transform: translateY(-3px);
+        border-color: var(--purple);
+        box-shadow: 0 0 15px rgba(130, 3, 133, 0.5), 0 0 4px var(--purple);
+        background: rgba(15, 10, 25, 0.8);
     }
-    .mini-nav-icon {
-        width: 36px;
-        height: 36px;
-        max-width: 36px;
-        max-height: 36px;
+
+    .skill-pill img {
+        width: 25px;
+        height: 25px;
         object-fit: contain;
-        display: block;
+        margin-right: 0.5rem;
     }
-}
 
-/* Move resume-float to top right and hide it (if you want only the mini-nav at top) */
+/* --- Misc Elements --- */
 .resume-float {
     position: fixed;
     top: 1.5rem;
@@ -913,22 +505,20 @@ section {
     box-shadow: 0 4px 16px rgba(44, 62, 80, 0.18), 0 0 16px 2px var(--purple);
     transition: box-shadow 0.3s;
     padding: 0.7rem;
-    display: none; /* Hide the floating resume button if using mini-nav */
+    display: none;
     align-items: center;
     justify-content: center;
 }
 
-#starfield {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    pointer-events: none;
-}
-body, html {
-    background: #000;
+    .resume-float:hover {
+        background: #fff;
+        box-shadow: 0 8px 32px rgba(130,3,133,0.25), 0 0 32px 6px var(--purple);
+    }
+
+.resume-float-icon {
+    height: 48px;
+    width: 48px;
+    display: block;
 }
 
 .scroll-indicator {
@@ -937,6 +527,79 @@ body, html {
     font-size: 5rem;
     color: white;
     animation: bounce 2s infinite;
+}
+
+/* --- Animations --- */
+@keyframes move-gradient {
+    0% {
+        background-position: 60% 40%;
+    }
+
+    10% {
+        background-position: 55% 45%;
+    }
+
+    25% {
+        background-position: 30% 60%;
+    }
+
+    40% {
+        background-position: 70% 70%;
+    }
+
+    55% {
+        background-position: 80% 30%;
+    }
+
+    70% {
+        background-position: 40% 20%;
+    }
+
+    85% {
+        background-position: 65% 60%;
+    }
+
+    100% {
+        background-position: 70% 30%;
+    }
+}
+
+@keyframes fade-gradient {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    8% {
+        opacity: 0.85;
+    }
+
+    18% {
+        opacity: 0.7;
+    }
+
+    27% {
+        opacity: 0.95;
+    }
+
+    38% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    62% {
+        opacity: 0.65;
+    }
+
+    74% {
+        opacity: 0.9;
+    }
+
+    85% {
+        opacity: 0.75;
+    }
 }
 
 @keyframes bounce {
@@ -951,4 +614,185 @@ body, html {
     60% {
         transform: translateY(-5px);
     }
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    .skill-pill {
+        padding: 0.8rem 1.5rem;
+        font-size: 1.25rem;
+        gap: 0.8rem;
+    }
+
+        .skill-pill img {
+            width: 46px;
+            height: 46px;
+        }
+}
+
+@media (max-width: 1000px) {
+    .mini-nav {
+        top: auto;
+        right: auto;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 95vw;
+        padding: 0.5rem 1rem;
+        gap: 2rem;
+    }
+
+    .mini-nav-icon {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 900px) {
+    .about-me {
+        flex-direction: column;
+        align-items: center;
+        max-width: 100%;
+    }
+
+        .about-me .profile-photo {
+            width: 300px;
+            height: 300px;
+            margin-left: 0;
+            margin-bottom: 1rem;
+        }
+
+        .about-me .summary {
+            max-width: 95vw;
+            min-width: 0;
+        }
+
+    .header {
+        padding: 6rem 1rem 3rem 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        height: 100vh;
+        padding: 0 0.5rem;
+    }
+
+        .header h1 {
+            font-size: 2.7rem;
+            text-align: center;
+        }
+
+        .header h2 {
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+    section h2 {
+        font-size: 3rem;
+    }
+
+    .navbar {
+        width: 85vw;
+        padding: 0.5rem;
+        border-radius: 30px;
+    }
+
+        .navbar ul {
+            gap: 1.5rem;
+        }
+
+        .navbar a {
+            padding: 0.3rem 0.5rem;
+            font-size: 0.9rem;
+        }
+
+    .mini-nav {
+        width: auto;
+        min-width: 0;
+        height: auto;
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mini-nav-icon {
+        max-width: 36px;
+        max-height: 36px;
+    }
+
+    .about-me {
+        flex-direction: column-reverse;
+    }
+
+        .about-me .profile-photo {
+            width: 200px;
+            height: 200px;
+        }
+
+    .projects-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .project-card {
+        width: 80vw;
+        max-width: 80vw;
+        height: 400px;
+        padding: 0.5rem 1rem 1rem 1rem;
+        font-size: 1.15rem;
+    }
+
+    .project-image {
+        height: 200px;
+        margin-bottom: 0.5rem;
+    }
+
+    .project-info h3, .experience-info h3 {
+        font-size: 1.7rem;
+    }
+
+    .skills-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .experience-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-bottom: 2rem;
+    }
+
+    .experience-image {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 0;
+    }
+
+    .experience-info {
+        width: 100%;
+    }
+
+        .experience-info .duration {
+            align-self: center;
+        }
+
+        .experience-info, .experience-info p, .company {
+            font-size: 1.25rem;
+            text-align: center !important;
+            width: 100%;
+            justify-content: center;
+        }
+
+            .experience-info ul {
+                text-align: center;
+                list-style-position: inside;
+                padding-left: 0;
+            }
 }

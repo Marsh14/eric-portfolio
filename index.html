@@ -122,8 +122,6 @@
                     </div>
                 </div>
             </a>
-
-            <!-- Add more project-card divs as needed -->
         </div>
     </section>
 
@@ -199,9 +197,6 @@
                         </p>
                     </div>
                 </div>
-
-                <!-- Add more experience-card divs as needed -->
-            
         </div>
 </section>
 
@@ -237,7 +232,6 @@
         const canvas = document.getElementById('starfield');
         const ctx = canvas.getContext('2d');
 
-        // --- Config ---
         const STAR_COUNT = 120;
         const STAR_COLOR = 'rgba(255,255,255,0.85)';
         const STAR_SIZE = [0.5, 1.2];
@@ -281,7 +275,7 @@
                 this.len = Math.random() * 80 + 10;
                 this.speed = Math.random() * 10 + 6;
                 this.size = Math.random() * 1 + 0.1;
-                // Wait time determines how often they appear (3000ms = 3s average)
+                // Wait time determines how often they appear
                 this.waitTime = new Date().getTime() + Math.random() * 3000 + 500;
                 this.active = false;
             }
@@ -318,11 +312,9 @@
 
         const shootingStar = new ShootingStar();
 
-        // --- Main Animation Loop ---
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // 1. Draw Background Stars
             for (let star of stars) {
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
@@ -337,7 +329,6 @@
                 }
             }
 
-            // 2. Draw Shooting Star
             shootingStar.update();
             shootingStar.draw();
 
@@ -350,18 +341,12 @@
         window.addEventListener('scroll', function () {
             const navbar = document.querySelector('.navbar');
             const miniNav = document.querySelector('.mini-nav');
-
-            // The threshold: How far down (in pixels) before nav shows up?
-            // 100vh means "the height of the screen".
-            // We divide by 4 to show it after scrolling 1/4th down the header.
             const threshold = window.innerHeight / 4;
 
             if (window.scrollY > threshold) {
-                // Scrolled DOWN: Show the navs (Remove the hiding class)
                 if (navbar) navbar.classList.remove('hide-on-top');
                 if (miniNav) miniNav.classList.remove('hide-on-top');
             } else {
-                // Scrolled UP (Top): Hide the navs (Add the hiding class)
                 if (navbar) navbar.classList.add('hide-on-top');
                 if (miniNav) miniNav.classList.add('hide-on-top');
             }

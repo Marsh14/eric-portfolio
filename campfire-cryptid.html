@@ -10,12 +10,6 @@
             --purple: #820385;
         }
 
-        body, html {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
         #starfield {
             position: fixed;
             top: 0;
@@ -26,85 +20,15 @@
             pointer-events: none;
         }
 
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             min-height: 100vh;
-            background: #000000
-        }
-
-        @keyframes move-gradient {
-            0% {
-                background-position: 60% 40%;
-            }
-
-            10% {
-                background-position: 55% 45%;
-            }
-
-            25% {
-                background-position: 30% 60%;
-            }
-
-            40% {
-                background-position: 70% 70%;
-            }
-
-            55% {
-                background-position: 80% 30%;
-            }
-
-            70% {
-                background-position: 40% 20%;
-            }
-
-            85% {
-                background-position: 65% 60%;
-            }
-
-            100% {
-                background-position: 70% 30%;
-            }
-        }
-
-        @keyframes fade-gradient {
-            0% {
-                opacity: 1;
-            }
-
-            8% {
-                opacity: 0.85;
-            }
-
-            18% {
-                opacity: 0.7;
-            }
-
-            27% {
-                opacity: 0.95;
-            }
-
-            38% {
-                opacity: 0.6;
-            }
-
-            50% {
-                opacity: 0.8;
-            }
-
-            62% {
-                opacity: 0.65;
-            }
-
-            74% {
-                opacity: 0.9;
-            }
-
-            85% {
-                opacity: 0.75;
-            }
-
-            100% {
-                opacity: 1;
-            }
+            background: #000000;
         }
 
         .project-detail-container {
@@ -112,14 +36,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 2rem 0;
         }
 
         .project-detail-card {
             background: #fff;
             border: 3px solid var(--purple);
             border-radius: 15px;
-            /* Use a strong, fully opaque shadow to block background light */
-
             width: 100%;
             max-width: 900px;
             padding: 3rem 3rem;
@@ -128,11 +51,12 @@
             flex-direction: column;
             align-items: center;
             z-index: 2;
-            position: relative; /* Ensure stacking context */
+            position: relative;
         }
 
         .project-detail-image {
-            width: 500px;
+            width: 100%;
+            max-width: 500px;
             height: 250px;
             object-fit: cover;
             border-radius: 15px;
@@ -146,24 +70,12 @@
             font-size: 2.2rem;
             margin-bottom: 0.5rem;
             text-align: center;
-        }
-
-        .project-detail-tools {
-            color: var(--purple);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-
-        .project-detail-prize {
-            color: #333;
-            font-size: 1.1rem;
-            margin-bottom: 1.2rem;
-            text-align: center;
+            font-weight: bold;
         }
 
         .project-site-link {
             display: inline-block;
+            margin-top: 1.5rem;
             margin-bottom: 1.2rem;
             padding: 0.7rem 1.5rem;
             background: var(--purple);
@@ -173,6 +85,7 @@
             font-size: 1.1rem;
             text-decoration: none;
             transition: background 0.2s, color 0.2s;
+            align-self: center;
         }
 
             .project-site-link:hover {
@@ -181,53 +94,83 @@
             }
 
         .project-detail-desc {
-            color: #222;
+            color: #333;
             font-size: 1.15rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            text-align: left;
+            width: 100%;
+        }
+
+            .project-detail-desc p {
+                margin-bottom: 1.2rem;
+            }
+
+        /* Technical Code Blocks and Images */
+        .tech-section {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eaeaea;
+        }
+
+            .tech-section h3 {
+                color: var(--purple);
+                font-size: 1.4rem;
+                margin-bottom: 0.5rem;
+            }
+
+        .project-detail-gif {
+            width: 100%;
+            max-width: 750px;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem auto;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
         }
 
         .back-link {
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             color: var(--purple);
-            text-decoration: underline;
-            font-weight: 500;
-            font-size: 1rem;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
             transition: color 0.2s;
+            align-self: center;
         }
 
             .back-link:hover {
                 color: #4b014b;
+                text-decoration: underline;
             }
 
         @media (max-width: 600px) {
             .project-detail-card {
-                padding: 1.2rem 0.5rem;
-                margin: 0.5rem;
-                max-width: 90vw;
+                padding: 1.5rem 1rem;
+                margin: 1rem;
             }
 
             .project-detail-image {
                 width: 90vw;
-                max-width: 98vw;
                 height: 140px;
                 margin-bottom: 1rem;
             }
 
             .project-detail-title {
-                font-size: 1.5rem;
-            }
-
-            .project-detail-tools,
-            .project-detail-prize,
-            .project-site-link,
-            .back-link {
-                font-size: 1rem;
+                font-size: 1.8rem;
             }
 
             .project-detail-desc {
+                font-size: 1.05rem;
+            }
+
+            .tech-section h3 {
+                font-size: 1.2rem;
+            }
+
+            .project-site-link,
+            .back-link {
                 font-size: 1rem;
-                margin-bottom: 1rem;
             }
         }
     </style>
@@ -238,76 +181,91 @@
         <div class="project-detail-card">
             <img src="pics/cc.png" alt="Campfire Cryptid" class="project-detail-image" />
             <div class="project-detail-title">Campfire Cryptid</div>
-            <div class="project-detail-desc">
-                Campfire Cryptid was a horror survival game made in Unity for the Game Dev Knights Summer 2025 Game Jam.
-                This was my first time working in Unity 6 so it was a great learning experience. I helped make the Shooting Eyes minigame in the game. This was a minigame where you had to shoot eyes that would spawn around to stop the monster from attacking you.
-                Heres some code for the crosshair movement:
-                <img src="pics/ccmovement.png" alt="Movement Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
-                I used Unity's new Input System to handle the movement of the crosshair, this code basically checks to see if WASD are pressed and moves the crosshair accordingly. I also used the Clamp function to set bounds for the crosshair so it doesnt go off the map.
-                To check for shooting the eyes I used a function that gets the RectTransform of the crosshair and checks to see if it overlaps with any of the eye RectTransforms by getting the four corners of the eyes and crosshair RectTransforms and checking if any of the corners overlap. I also shrunk
-                the crosshair to make it harder to shoot the eyes. I also made the eyes spawn in random locations every second and a half using this code:
-                <img src="pics/cccompare.png" alt="Compare Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
-                <img src="pics/ccse.png" alt="Spawn Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
-                I also helped implement the global data in the game to keep track of the night timer and the fire level.
-                <img src="pics/ccgd.png" alt="GD Example" style="width: 100%; max-width: 900px; border-radius: 8px; margin: 1.5rem auto 1.5rem auto; border: 1px solid #ddd; display: block;" />
-                This game won the Community Favorite award in the jam and I had a lot of fun working on it during the summer.
 
+            <div class="project-detail-desc">
+                <p>Campfire Cryptid is a survival horror game rapidly prototyped in Unity 6 for the Game Dev Knights Summer 2025 Game Jam, where it won 1st place out of 11 projects and took home the Community Favorite award.</p>
+                <p>Under a strict 48-hour deadline, I engineered several core gameplay mechanics, including the "Shooting Eyes" minigame designed to fend off enemy attacks.</p>
+
+                <!-- Technical Sections Broken Down for Scannability -->
+                <div class="tech-section">
+                    <h3>Input Handling & Screen Boundaries</h3>
+                    <p>Utilizing Unity's New Input System, I programmed the crosshair's movement logic. To keep the player's targeting reticle within the playable UI space, I implemented a mathematical clamp function to establish hard boundaries based on the screen's dimensions.</p>
+                    <img src="pics/ccmovement.png" alt="Movement Logic Code" class="project-detail-gif" />
+                </div>
+
+                <div class="tech-section">
+                    <h3>Spatial Collision & Object Lifecycles</h3>
+                    <p>For the hit-detection system, I built a custom collision function that calculates overlaps between UI elements by extracting and comparing the four corners of their respective `RectTransforms`. Additionally, I implemented an automated spawning system that instantiates enemy targets at random vector locations on a strict 1.5-second interval to optimize runtime performance.</p>
+                    <img src="pics/cccompare.png" alt="Collision Comparison Code" class="project-detail-gif" />
+                    <img src="pics/ccse.png" alt="Automated Spawning Code" class="project-detail-gif" />
+                </div>
+
+                <div class="tech-section">
+                    <h3>Global Game State Management</h3>
+                    <p>To persist data across different scenes and game states, I developed a global data manager. This system successfully tracked critical runtime variables, such as the overarching night countdown timer and the player's remaining fire level.</p>
+                    <img src="pics/ccgd.png" alt="Global Data Code" class="project-detail-gif" />
+                </div>
             </div>
+
             <a href="https://elusivechicken47.itch.io/campfire-cryptid" class="project-site-link" target="_blank" rel="noopener">
-                View Full Project
+                View Full Project on Itch.io
             </a>
+
             <a href="index.html#projects" class="back-link">&larr; Back to Projects</a>
         </div>
     </div>
-    <script>const canvas = document.getElementById('starfield');
-const ctx = canvas.getContext('2d');
-let stars = [];
-const STAR_COUNT = 120;
-const STAR_COLOR = 'rgba(255,255,255,0.85)';
-const STAR_SIZE = [0.5, 1.2];
-const STAR_SPEED = [0.05, 0.25];
 
-function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resize);
-resize();
+    <script>
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        const STAR_COUNT = 120;
+        const STAR_COLOR = 'rgba(255,255,255,0.85)';
+        const STAR_SIZE = [0.5, 1.2];
+        const STAR_SPEED = [0.05, 0.25];
 
-function randomBetween(a, b) {
-    return a + Math.random() * (b - a);
-}
-
-function createStars() {
-    stars = [];
-    for (let i = 0; i < STAR_COUNT; i++) {
-        stars.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            r: randomBetween(STAR_SIZE[0], STAR_SIZE[1]),
-            speed: randomBetween(STAR_SPEED[0], STAR_SPEED[1])
-        });
-    }
-}
-createStars();
-
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let star of stars) {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
-        ctx.fillStyle = STAR_COLOR;
-        ctx.shadowColor = '#fff';
-        ctx.shadowBlur = 8;
-        ctx.fill();
-        star.y += star.speed;
-        if (star.y > canvas.height) {
-            star.x = Math.random() * canvas.width;
-            star.y = 0;
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
-    }
-    requestAnimationFrame(animate);
-}
-animate();</script>
+        window.addEventListener('resize', resize);
+        resize();
+
+        function randomBetween(a, b) {
+            return a + Math.random() * (b - a);
+        }
+
+        function createStars() {
+            stars = [];
+            for (let i = 0; i < STAR_COUNT; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: randomBetween(STAR_SIZE[0], STAR_SIZE[1]),
+                    speed: randomBetween(STAR_SPEED[0], STAR_SPEED[1])
+                });
+            }
+        }
+        createStars();
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let star of stars) {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
+                ctx.fillStyle = STAR_COLOR;
+                ctx.shadowColor = '#fff';
+                ctx.shadowBlur = 8;
+                ctx.fill();
+                star.y += star.speed;
+                if (star.y > canvas.height) {
+                    star.x = Math.random() * canvas.width;
+                    star.y = 0;
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 </html>
