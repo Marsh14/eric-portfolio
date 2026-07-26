@@ -11,6 +11,8 @@ html, body {
     padding: 0;
     background: #000;
     scroll-behavior: smooth;
+    /* This creates the buffer space for your fixed navbar */
+    scroll-padding-top: 150px;
 }
 
 body {
@@ -736,8 +738,13 @@ img.profile-photo {
 
     .navbar {
         width: auto;
-        padding: 1rem 1.5rem;
-        border-radius: 30px;
+        padding: 1rem;
+        border-radius: 15px;
+        /* Reset the center alignment and push it to the top right */
+        left: auto;
+        transform: none;
+        right: 1.5rem;
+        top: 1.5rem;
     }
 
     .hamburger {
@@ -759,8 +766,11 @@ img.profile-photo {
         display: none;
         position: absolute;
         top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
+        /* Align the dropdown box to the right edge of the hamburger icon */
+        left: auto;
+        right: 0;
+        transform: none;
+        margin-top: 15px;
         background: rgba(20, 10, 40, 0.95);
         border: 1px solid rgba(130, 3, 133, 0.5);
         padding: 1rem;
