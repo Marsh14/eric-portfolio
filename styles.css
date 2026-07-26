@@ -11,7 +11,6 @@ html, body {
     padding: 0;
     background: #000;
     scroll-behavior: smooth;
-    /* This creates the buffer space for your fixed navbar */
     scroll-padding-top: 150px;
 }
 
@@ -215,7 +214,7 @@ h1, h2, h3, .navbar a, .project-info h3, .experience-info h3, section h2 {
 
 /* --- Section Formatting --- */
 section {
-    scroll-margin-top: 120px; /* Resolves Nav Bar Overlap */
+    scroll-margin-top: 120px;
     max-width: 1200px;
     margin: 2rem auto;
     padding: 1.5rem 2rem;
@@ -244,7 +243,7 @@ section {
 
 /* --- Shared Glass Card Styles --- */
 .project-card, .experience-card {
-    background: rgba(30, 15, 55, 0.7); /* Darkened for higher contrast */
+    background: rgba(30, 15, 55, 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(130, 3, 133, 0.3);
@@ -252,7 +251,7 @@ section {
     color: #eee;
     border-radius: 15px;
     transition: all 0.3s ease;
-    padding: 1rem; /* Added padding for separation */
+    padding: 1rem; 
 }
 
     .project-card:hover, .experience-card:hover,
@@ -740,7 +739,6 @@ img.profile-photo {
         width: auto;
         padding: 1rem;
         border-radius: 15px;
-        /* Reset the center alignment and push it to the top right */
         left: auto;
         transform: none;
         right: 1.5rem;
@@ -766,7 +764,6 @@ img.profile-photo {
         display: none;
         position: absolute;
         top: 100%;
-        /* Align the dropdown box to the right edge of the hamburger icon */
         left: auto;
         right: 0;
         transform: none;
@@ -929,7 +926,6 @@ img.profile-photo {
     font-size: 3.5rem;
     font-weight: bold;
     display: inline-block;
-    /* These two lines pull the arrow closer to the text */
     margin-top: 5px;
     line-height: 0.5;
 }
