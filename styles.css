@@ -42,6 +42,21 @@ h1, h2, h3, .navbar a, .project-info h3, .experience-info h3, section h2 {
     pointer-events: none;
 }
 
+/* --- Cursor Trail --- */
+.cursor-trail {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: scale(1);
+    box-shadow: 0 0 10px #fff, 0 0 20px var(--purple);
+}
+
 /* --- Header & Hero Section --- */
 .header {
     display: flex;
@@ -114,7 +129,7 @@ h1, h2, h3, .navbar a, .project-info h3, .experience-info h3, section h2 {
         z-index: 2;
     }
 
-/* --- Navigation --- */
+/* --- Navigation & Hamburger --- */
 .navbar {
     background: rgba(50, 30, 80, 0.5);
     backdrop-filter: blur(12px);
@@ -135,29 +150,34 @@ h1, h2, h3, .navbar a, .project-info h3, .experience-info h3, section h2 {
     transition: opacity 0.4s ease-in-out;
 }
 
-    .navbar ul {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        margin: 0;
-        padding: 0;
-    }
+.hamburger {
+    display: none;
+}
 
-    .navbar a {
-        color: #fff;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 1.2rem;
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        transition: background 0.2s;
-    }
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
 
-        .navbar a:hover {
-            background: #000;
-        }
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+    .navbar a:hover, .navbar a:focus {
+        background: #000;
+        outline: 2px solid var(--purple);
+    }
 
 .mini-nav {
     background: rgba(50, 30, 80, 0.5);
@@ -193,6 +213,7 @@ h1, h2, h3, .navbar a, .project-info h3, .experience-info h3, section h2 {
 
 /* --- Section Formatting --- */
 section {
+    scroll-margin-top: 120px; /* Resolves Nav Bar Overlap */
     max-width: 1200px;
     margin: 2rem auto;
     padding: 1.5rem 2rem;
@@ -221,7 +242,7 @@ section {
 
 /* --- Shared Glass Card Styles --- */
 .project-card, .experience-card {
-    background: rgba(50, 30, 80, 0.5);
+    background: rgba(30, 15, 55, 0.7); /* Darkened for higher contrast */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(130, 3, 133, 0.3);
@@ -229,13 +250,15 @@ section {
     color: #eee;
     border-radius: 15px;
     transition: all 0.3s ease;
+    padding: 1rem; /* Added padding for separation */
 }
 
-    .project-card:hover, .experience-card:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 0 20px rgba(130, 3, 133, 0.5), 0 0 40px rgba(130, 3, 133, 0.2), 0 0 4px var(--purple);
+    .project-card:hover, .experience-card:hover,
+    .project-link:focus .project-card, .experience-card:focus {
+        animation: sway 3s ease-in-out infinite;
+        box-shadow: 0 15px 35px rgba(130, 3, 133, 0.8), 0 0 20px rgba(255,255,255,0.2), 0 0 10px var(--purple);
         border-color: var(--purple);
-        background: rgba(15, 10, 25, 0.8);
+        background: rgba(15, 10, 25, 0.9);
     }
 
 .project-info h3, .experience-info h3 {
@@ -524,10 +547,18 @@ img.profile-photo {
 .scroll-indicator {
     position: absolute;
     bottom: 30px;
-    font-size: 5rem;
+    font-size: 1.5rem;
     color: white;
+    text-decoration: none;
+    text-align: center;
     animation: bounce 2s infinite;
+    cursor: pointer;
 }
+    .scroll-indicator:hover, .scroll-indicator:focus {
+        color: var(--purple);
+        text-shadow: 0 0 3px #fff;
+        outline: none;
+    }
 
 /* --- Animations --- */
 @keyframes move-gradient {
@@ -602,6 +633,16 @@ img.profile-photo {
     }
 }
 
+@keyframes sway {
+    0%, 100% {
+        transform: translateY(-10px) scale(1.03) rotate(1.5deg);
+    }
+
+    50% {
+        transform: translateY(-10px) scale(1.03) rotate(-1.5deg);
+    }
+}
+
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
@@ -672,6 +713,7 @@ img.profile-photo {
     }
 }
 
+/* --- Hamburger Menu Logic for Mobile --- */
 @media (max-width: 600px) {
     .header {
         height: 100vh;
@@ -693,19 +735,49 @@ img.profile-photo {
     }
 
     .navbar {
-        width: 85vw;
-        padding: 0.5rem;
+        width: auto;
+        padding: 1rem 1.5rem;
         border-radius: 30px;
     }
 
-        .navbar ul {
-            gap: 1.5rem;
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: 0.3s;
         }
 
-        .navbar a {
-            padding: 0.3rem 0.5rem;
-            font-size: 0.9rem;
+    .navbar ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(20, 10, 40, 0.95);
+        border: 1px solid rgba(130, 3, 133, 0.5);
+        padding: 1rem;
+        border-radius: 10px;
+        flex-direction: column;
+        gap: 1rem;
+        width: 150px;
+    }
+
+        .navbar ul.active {
+            display: flex;
         }
+
+    .navbar a {
+        padding: 0.3rem 0.5rem;
+        font-size: 1rem;
+    }
 
     .mini-nav {
         width: auto;
@@ -742,7 +814,7 @@ img.profile-photo {
         width: 80vw;
         max-width: 80vw;
         height: 400px;
-        padding: 0.5rem 1rem 1rem 1rem;
+        padding: 1rem;
         font-size: 1.15rem;
     }
 
@@ -795,4 +867,59 @@ img.profile-photo {
                 list-style-position: inside;
                 padding-left: 0;
             }
+}
+
+/* --- Footer Styling --- */
+.site-footer {
+    text-align: center;
+    padding: 3rem 1rem;
+    margin-top: 5rem;
+    background: linear-gradient(to top, rgba(30, 15, 55, 0.9) 0%, rgba(0,0,0,0) 100%);
+    border-top: 1px solid rgba(130, 3, 133, 0.3);
+    color: #ccc;
+    position: relative;
+    z-index: 10;
+}
+
+    .site-footer h2 {
+        font-size: 2rem;
+        color: #00f3ff;
+        text-shadow: 0 0 10px #00f3ff;
+        margin-bottom: 1rem;
+    }
+
+.footer-content p {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.footer-content ul {
+    list-style: none;
+    padding: 0;
+    margin-left: 0;
+}
+
+.footer-content li {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.footer-content a {
+    color: #fff;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+    .footer-content a:hover, .footer-content a:focus {
+        color: var(--purple);
+        outline: none;
+    }
+
+.big-arrow {
+    font-size: 3.5rem;
+    font-weight: bold;
+    display: inline-block;
+    /* These two lines pull the arrow closer to the text */
+    margin-top: 5px;
+    line-height: 0.5;
 }
