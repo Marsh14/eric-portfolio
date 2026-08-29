@@ -929,3 +929,55 @@ img.profile-photo {
     margin-top: 5px;
     line-height: 0.5;
 }
+
+.mission-terminal {
+    background-color: rgba(20, 10, 35, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px; 
+    max-width: 800px;
+    margin: 40px auto;
+    font-family: "Courier New", Courier, monospace;
+  
+    box-shadow: 0 0 20px rgba(176, 38, 255, 0.15);
+    overflow: hidden;
+}
+
+.terminal-header {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 12px 20px;
+    text-align: center; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header-title {
+    color: #ffffff; 
+    font-size: 0.95rem; 
+    font-weight: bold; 
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4); 
+}
+
+.terminal-body {
+    padding: 35px 30px;
+    color: #ffffff; 
+    font-size: 1.3rem; 
+    line-height: 1.7;
+    min-height: 160px; 
+}
+
+.blinking-cursor {
+    font-weight: bold;
+    color: #d85cff; 
+    text-shadow: 0 0 10px rgba(216, 92, 255, 0.8);
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}

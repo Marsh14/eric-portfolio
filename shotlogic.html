@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ShotLogic | Eric Nortmann</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --purple: #820385;
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #000000;
+        }
+
+        .project-detail-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0; /* Added padding to prevent cutting off on smaller screens */
+        }
+
+        .project-detail-card {
+            background: #fff;
+            border: 3px solid var(--purple);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 900px;
+            padding: 3rem 3rem;
+            margin: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .project-detail-image {
+            width: 100%;
+            max-width: 500px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 1.5px solid #ddd;
+            margin-bottom: 2rem;
+            background: #eee;
+        }
+
+        .project-detail-title {
+            color: var(--purple);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .project-detail-desc {
+            color: #333;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            text-align: left; /* Changed to left for better readability of longer text */
+            width: 100%;
+        }
+
+            .project-detail-desc p {
+                margin-bottom: 1.2rem;
+            }
+
+        /* New CSS for your Code Blocks and Images */
+        .tech-section {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eaeaea;
+        }
+
+            .tech-section h3 {
+                color: var(--purple);
+                font-size: 1.4rem;
+                margin-bottom: 0.5rem;
+            }
+
+        .project-detail-gif {
+            width: 100%;
+            max-width: 750px;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem auto;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+        }
+
+        .back-link {
+            margin-top: 2rem;
+            color: var(--purple);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            align-self: center;
+        }
+
+            .back-link:hover {
+                color: #4b014b;
+                text-decoration: underline;
+            }
+
+        @media (max-width: 600px) {
+            .project-detail-card {
+                padding: 1.5rem 1rem;
+                margin: 1rem;
+            }
+
+            .project-detail-title {
+                font-size: 1.8rem;
+            }
+
+            .project-detail-desc {
+                font-size: 1.05rem;
+            }
+
+            .tech-section h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+    <div class="project-detail-container">
+        <div class="project-detail-card">
+            <img src="pics/shotlogic.png" alt="ShotLogic" class="project-detail-image" />
+            <div class="project-detail-title">ShotLogic</div>
+
+            <div class="project-detail-desc">
+                <p>In the summer when this project was made I picked up basketball as a hobby and started playing on a intramural co rec team.</p>
+
+                <p>While I was playing, I realized that when im shooting I can't see my shot form while im shooting, thats why I decided to create ShotLogic.</p>
+
+                <p>It runs the Google Gemini API to provide real-time feedback and analysis of the player's shooting technique, it can also provide custom drills for you to follow based on areas of improvement.</p>
+
+                <div class="tech-section">
+                    <h3>Application Demo</h3>
+                    <p>Here is a look at the application in action, featuring the Form Lab video analysis and the AI-powered tactical drill generator:</p>
+
+                    <video autoplay loop muted playsinline class="project-detail-gif" style="width: 100%; border-radius: 8px;">
+                        <source src="pics/shotlogicdemo.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="tech-section">
+                    <h3>Structured AI Data with Pydantic & FastAPI</h3>
+                    <p>To ensure the React frontend does not break from unpredictable LLM text responses, I engineered a Python backend using FastAPI. By implementing strict Pydantic models, I force the AI to return perfectly structured JSON data, guaranteeing that variables like the overall rating and feedback strings map flawlessly to the frontend state.</p>
+                    <img src="pics/pydantic_schema.png" alt="FastAPI and Pydantic Schema" class="project-detail-gif" />
+                </div>
+
+                <div class="tech-section">
+                    <h3>Video Timestamp Syncing</h3>
+                    <p>To make the AI feedback actionable, I developed a custom parser that binds the AI-generated timestamps directly to the React HTML5 video player reference. When a user clicks on a specific mechanical event in their timeline, the application automatically scrubs the video to that exact frame.</p>
+                    <img src="pics/timestampsync.png" alt="Timestamp Parsing Logic" class="project-detail-gif" />
+                </div>
+
+                <div class="tech-section">
+                    <h3>Dynamic SVG Court Mapping</h3>
+                    <p>Instead of simply listing drills as text, I built an interactive tactical playbook. The AI assigns strict X/Y coordinates to player movements, and the React frontend iterates over that data to dynamically render animated SVG paths, arrows, and waypoints directly onto a virtual court interface.</p>
+                    <img src="pics/svg_mapping.png" alt="SVG Court Mapping" class="project-detail-gif" />
+                </div>
+
+            </div>
+            <a href="index.html#projects" class="back-link">&larr; Back to Projects</a>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        const STAR_COUNT = 120;
+        const STAR_COLOR = 'rgba(255,255,255,0.85)';
+        const STAR_SIZE = [0.5, 1.2];
+        const STAR_SPEED = [0.05, 0.25];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function randomBetween(a, b) {
+            return a + Math.random() * (b - a);
+        }
+
+        function createStars() {
+            stars = [];
+            for (let i = 0; i < STAR_COUNT; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: randomBetween(STAR_SIZE[0], STAR_SIZE[1]),
+                    speed: randomBetween(STAR_SPEED[0], STAR_SPEED[1])
+                });
+            }
+        }
+        createStars();
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let star of stars) {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
+                ctx.fillStyle = STAR_COLOR;
+                ctx.shadowColor = '#fff';
+                ctx.shadowBlur = 8;
+                ctx.fill();
+                star.y += star.speed;
+                if (star.y > canvas.height) {
+                    star.x = Math.random() * canvas.width;
+                    star.y = 0;
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>

@@ -155,3 +155,48 @@ window.addEventListener('mousemove', function (e) {
         trail.remove();
     }, 400);
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const textToType = "My goal when creating software is to build solutions that are not only functional but also provide a meaningful, positive impact on the world whether that means making life-changing games, developing cutting-edge simulations, or participating in global research.";
+
+    const typeWriterElement = document.getElementById("typewriter-text");
+    const terminalElement = document.querySelector(".mission-terminal");
+
+    let i = 0;
+    let isTyping = false; // Prevents the animation from triggering multiple times
+
+    function typeWriter() {
+        if (i < textToType.length) {
+            typeWriterElement.innerHTML += textToType.charAt(i);
+            i++;
+            // Randomize typing speed between 20ms and 60ms
+            const typingSpeed = Math.floor(Math.random() * 40) + 20;
+            setTimeout(typeWriter, typingSpeed);
+        }
+    }
+
+    // Set up the Intersection Observer
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.6 // Triggers when 60% of the terminal is visible on screen
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !isTyping) {
+                isTyping = true;
+                // Add a half-second delay before typing starts for cinematic effect
+                setTimeout(typeWriter, 500);
+
+                // Stop observing so it doesn't erase and re-type if they scroll up and down
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Start observing the terminal container
+    if (terminalElement) {
+        observer.observe(terminalElement);
+    }
+});
